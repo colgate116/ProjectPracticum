@@ -19,14 +19,22 @@ qt_add_qml_module(projectPracticum
     URI path      # ссылка, по которой будут загружаться файлы qml
     VERSION 1.0
 
+    QML_FILES qml/Component/ImgButton.qml
+    QML_FILES qml/Component/TextButton.qml
+
     QML_FILES qml/EnteryActivity/EnteryActivity.qml
     QML_FILES qml/EnteryActivity/RegistrationFragment.qml
     QML_FILES qml/EnteryActivity/SignInFragment.qml
 
-    QML_FILES qml/Title.qml
+    QML_FILES qml/NavigationActivity/NavigationActivity.qml
+    QML_FILES qml/NavigationActivity/NavigationSideBar.qml
+
+    QML_FILES qml/NavigationActivity/NavigationFrame/Title.qml
+
     QML_FILES qml/MainActivity.qml
 
     RESOURCES imgs/MTUCI.jpg
+    RESOURCES imgs/navigationBarIcon.svg
 )
 
 target_link_libraries(projectPracticum

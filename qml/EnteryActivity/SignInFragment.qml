@@ -1,9 +1,8 @@
 import QtQuick 2.15
-import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Controls.Material
 
-Item{
+Item {
     ColumnLayout {
         spacing: 20
         width: parent.width
@@ -58,6 +57,9 @@ Item{
             Material.background: Material.DeepPurple
             HoverHandler {
                 cursorShape: Qt.PointingHandCursor
+            }
+            onClicked: {
+                stack.push( "../NavigationActivity/NavigationActivity.qml" )
             }
         }
     }
