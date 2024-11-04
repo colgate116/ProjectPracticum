@@ -18,8 +18,15 @@ qt_add_executable(projectPracticum
 qt_add_qml_module(projectPracticum
     URI path      # ссылка, по которой будут загружаться файлы qml
     VERSION 1.0
+
+    QML_FILES qml/EnteryActivity/EnteryActivity.qml
+    QML_FILES qml/EnteryActivity/RegistrationFragment.qml
+    QML_FILES qml/EnteryActivity/SignInFragment.qml
+
     QML_FILES qml/Title.qml
     QML_FILES qml/MainActivity.qml
+
+    RESOURCES imgs/MTUCI.jpg
 )
 
 target_link_libraries(projectPracticum
