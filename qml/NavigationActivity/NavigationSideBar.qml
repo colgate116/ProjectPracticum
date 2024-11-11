@@ -10,7 +10,7 @@ ItemDelegate {
     visible: false
     width: 300
     background: Image {
-        source: "../../imgs/MTUCI.jpg"
+        source: "qrc:/path/imgs/MTUCI.jpg"
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
         Rectangle {

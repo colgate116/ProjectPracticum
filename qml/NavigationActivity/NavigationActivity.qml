@@ -31,7 +31,7 @@ ItemDelegate {
             left: parent.left
             leftMargin: 20
         }
-        imgSource: "../../imgs/navigationBarIcon.svg"
+        imgSource: "qrc:/path/imgs/navigationBarIcon.svg"
     }
 
     onReleased: {
@@ -71,17 +71,15 @@ ItemDelegate {
         }
         id: navigationStack
         Title {}
-        Item {
-            anchors.fill: parent
-        }
-        Item {
-            anchors.fill: parent
-        }
-        Item {
-            anchors.fill: parent
-        }
-        Item {
-            anchors.fill: parent
-        }
+        //Theory {}
+        // Item {
+        //     anchors.fill: parent
+        // }
+        // Item {
+        //     anchors.fill: parent
+        // }
+        // Item {
+        //     anchors.fill: parent
+        // }
     }
 }

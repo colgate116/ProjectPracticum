@@ -3,11 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls.Material
 
 ItemDelegate {
-    background: Image {
-        id: enteryActivityBackground
-        source: "../../imgs/MTUCI.jpg"
-        anchors.fill: parent
-        fillMode: Image.PreserveAspectCrop
+    background:
         Rectangle {
             anchors.fill: parent
             opacity: 0.65
@@ -16,7 +12,6 @@ ItemDelegate {
                 GradientStop { position: 1.0; color: "darkBlue" }
             }
         }
-    }
 
     Item {
         height: parent.height - 160

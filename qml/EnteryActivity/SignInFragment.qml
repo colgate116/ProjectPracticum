@@ -59,7 +59,7 @@ Item {
                 cursorShape: Qt.PointingHandCursor
             }
             onClicked: {
-                stack.push( "../NavigationActivity/NavigationActivity.qml" )
+                stack.push( "qrc:/path/qml/NavigationActivity/NavigationActivity.qml" )
             }
         }
     }

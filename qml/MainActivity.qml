@@ -14,6 +14,6 @@ Window {
     StackView {
         id: stack
         anchors.fill: parent
-        initialItem: "EnteryActivity/EnteryActivity.qml"
+        initialItem: "qrc:/path/qml/EnteryActivity/EnteryActivity.qml"
     }
 }
