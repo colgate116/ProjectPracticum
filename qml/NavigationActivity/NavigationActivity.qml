@@ -71,7 +71,7 @@ ItemDelegate {
         }
         id: navigationStack
         Title {}
-        //Theory {}
+        Theory {}
         // Item {
         //     anchors.fill: parent
         // }

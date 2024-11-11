@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Добавляем пакет Quick
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS WebView)
 
 qt_standard_project_setup()
 
@@ -30,6 +31,7 @@ qt_add_qml_module(projectPracticum
     qml/NavigationActivity/NavigationActivity.qml
     qml/NavigationActivity/NavigationSideBar.qml
 
+    qml/NavigationActivity/NavigationFrame/Theory.qml
     qml/NavigationActivity/NavigationFrame/Title.qml
 
     qml/MainActivity.qml
@@ -42,6 +44,7 @@ qt_add_qml_module(projectPracticum
 
 target_link_libraries(projectPracticum
     PRIVATE Qt6::Quick
+    PRIVATE Qt6::WebView
 )
 
 include(GNUInstallDirs)
