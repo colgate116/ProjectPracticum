@@ -20,18 +20,12 @@ Item {
         width: parent.width
         height: parent.height
         currentIndex: theoryBar.currentIndex
-        WebView {
-            id: webView
-            url: Qt.resolvedUrl("C:/Users/Kolya/Documents/QtProjects/projectPracticum/html.html")
-        }
-        Rectangle {
-            width: 100
-            height: 100
-            color: "red"
-
-        }
-        Item {
-
+        Repeater {
+            model: ["file:///path/1.html", "file:///path/2.html", "file:///path/3.html"]
+                WebView {
+                    id: webView
+                    url: modelData
+                }
         }
     }
     Rectangle {
