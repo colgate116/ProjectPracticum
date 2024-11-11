@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Добавляем пакет Quick
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
-find_package(Qt6 REQUIRED COMPONENTS WebView)
+find_package(Qt6 6.5 REQUIRED COMPONENTS WebView)
 
 qt_standard_project_setup()
 

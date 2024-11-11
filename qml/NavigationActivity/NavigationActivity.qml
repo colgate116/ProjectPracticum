@@ -57,7 +57,7 @@ ItemDelegate {
             right: parent.right
             left: parent.left
             top: fragmentName.bottom
-            margins: 7
+            topMargin: 7
         }
         color: Material.color(Material.Grey)
     }
