@@ -37,9 +37,6 @@ qt_add_qml_module(projectPracticum
     qml/MainActivity.qml
 
     RESOURCES
-    1.html
-    2.html
-    3.html
     imgs/MTUCI.jpg
     imgs/navigationBarIcon.svg
 )

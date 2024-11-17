@@ -40,7 +40,7 @@ ItemDelegate {
         radius: 10
         anchors {
             top: userName.bottom
-            topMargin: 7
+            topMargin: 10
             left: parent.left
             leftMargin: 10
             right: parent.right

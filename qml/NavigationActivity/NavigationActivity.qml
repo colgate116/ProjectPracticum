@@ -44,7 +44,7 @@ ItemDelegate {
         anchors {
             top: parent.top
             right: parent.right
-            margins: 20
+            margins: 15
         }
         font.pointSize: 16
         color: Material.color(Material.Grey)
@@ -57,7 +57,7 @@ ItemDelegate {
             right: parent.right
             left: parent.left
             top: fragmentName.bottom
-            topMargin: 7
+            topMargin: 15
         }
         color: Material.color(Material.Grey)
     }
