@@ -72,14 +72,8 @@ ItemDelegate {
         id: navigationStack
         Title {}
         Theory {}
-        // Item {
-        //     anchors.fill: parent
-        // }
-        // Item {
-        //     anchors.fill: parent
-        // }
-        // Item {
-        //     anchors.fill: parent
-        // }
+        Item {}
+        Item {
+        }
     }
 }

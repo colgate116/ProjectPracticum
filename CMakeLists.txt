@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Добавляем пакет Quick
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 find_package(Qt6 6.5 REQUIRED COMPONENTS WebView)
+find_package(Qt6 REQUIRED COMPONENTS Sql)
 
 qt_standard_project_setup()
 
@@ -19,6 +20,9 @@ qt_add_executable(projectPracticum
 qt_add_qml_module(projectPracticum
     URI path      # ссылка, по которой будут загружаться файлы qml
     VERSION 1.0
+
+    SOURCES
+    src/SqliteDataBase.h src/SqliteDataBase.cpp
 
     QML_FILES
     qml/Component/ImgButton.qml
@@ -44,6 +48,7 @@ qt_add_qml_module(projectPracticum
 target_link_libraries(projectPracticum
     PRIVATE Qt6::Quick
     PRIVATE Qt6::WebView
+    PRIVATE Qt6::Sql
 )
 
 include(GNUInstallDirs)
