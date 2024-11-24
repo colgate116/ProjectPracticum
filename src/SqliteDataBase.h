@@ -6,17 +6,19 @@
 #include <QDebug>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QObject>
 
-class SqliteDataBase
+class SqliteDataBase: public QObject
 {
+    Q_OBJECT
 public:
-    SqliteDataBase();
-
+    explicit SqliteDataBase(QObject *parent = nullptr);
     void create();
-    void open();
+public slots:
     void close();
 private:
     void createTable( const QString query );
+    void open();
     QSqlDatabase db;
 
 

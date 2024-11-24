@@ -19,12 +19,15 @@
 #define DATE "date"
 #define USER_ID "user_id"
 
-SqliteDataBase::SqliteDataBase() {}
+SqliteDataBase::SqliteDataBase( QObject *parent ): QObject( parent )
+{
+
+}
 
 void SqliteDataBase::create()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("data_base.db");
+    db.setDatabaseName("data_base.db.sqlite");
     db.setUserName("Nikolya");
     db.setPassword("Shavrin");
 
@@ -35,29 +38,27 @@ void SqliteDataBase::create()
                                + QString(PASSWORD) + " varchar(100) not null unique )";
     QString createTestsTable = "create table " + QString(TESTS_TABLE_NAME)
                                + "( id int primary key, "
-                               + QString(QUESTION_1) + "bool not null, "
-                               + QString(QUESTION_2) + "bool not null, "
-                               + QString(QUESTION_3) + "bool not null, "
-                               + QString(QUESTION_4) + "bool not null, "
-                               + QString(QUESTION_5) + "bool not null, "
-                               + QString(QUESTION_6) + "bool not null, "
-                               + QString(QUESTION_7) + "bool not null, "
-                               + QString(QUESTION_8) + "bool not null, "
-                               + QString(QUESTION_9) + "bool not null, "
-                               + QString(QUESTION_10) + "bool not null ) ";
+                               + QString(QUESTION_1) + " bool not null, "
+                               + QString(QUESTION_2) + " bool not null, "
+                               + QString(QUESTION_3) + " bool not null, "
+                               + QString(QUESTION_4) + " bool not null, "
+                               + QString(QUESTION_5) + " bool not null, "
+                               + QString(QUESTION_6) + " bool not null, "
+                               + QString(QUESTION_7) + " bool not null, "
+                               + QString(QUESTION_8) + " bool not null, "
+                               + QString(QUESTION_9) + " bool not null, "
+                               + QString(QUESTION_10) + " bool not null ) ";
     QString createStatisticTable = "create table " + QString(USER_STATISTIC_TABLE)
                                    + "( id int primary key, "
-                                   + QString(TEST_ID) + "int not null, "
-                                   + QString(DATE) + "bool , "
-                                   + QString(USER_ID) + "int not null,"
+                                   + QString(TEST_ID) + " int not null, "
+                                   + QString(DATE) + " bool , "
+                                   + QString(USER_ID) + " int not null,"
                                    + "FOREIGN KEY ( " + TEST_ID + " ) REFERENCES " + TESTS_TABLE_NAME + " ( id )"
                                    + "FOREIGN KEY ( " + USER_ID + " ) REFERENCES " + USERS_TABLE_NAME + " ( id ) ) ";
 
     createTable( createUsersTable );
     createTable( createTestsTable );
     createTable( createStatisticTable );
-
-    close();
 }
 
 void SqliteDataBase::createTable( const QString query )
@@ -66,7 +67,7 @@ void SqliteDataBase::createTable( const QString query )
     sql_query.prepare( query );
     if( sql_query.exec() )
     {
-        qDebug() << "Table was created";
+        qDebug() << "Success: Table was created";
     }
 }
 
@@ -77,12 +78,13 @@ void SqliteDataBase::open() {
     }
     else
     {
-        qDebug() << "DataBase is opened";
+        qDebug() << "Success: DataBase is opened";
     }
 
 }
 
 void SqliteDataBase::close() {
     db.close();
+    qDebug() << "Success: DataBase is closed";
 }
 
