@@ -15,7 +15,6 @@ ItemDelegate {
         color: Material.color(Material.Grey)
         anchors.centerIn: parent
     }
-
     HoverHandler {
         cursorShape: Qt.PointingHandCursor
     }

@@ -26,6 +26,9 @@ qt_add_qml_module(projectPracticum
 
     QML_FILES
     qml/Component/ImgButton.qml
+    qml/Component/QuestionFrame.qml
+    qml/Component/SaveButton.qml
+    qml/Component/TaskText.qml
     qml/Component/TextButton.qml
 
     qml/EnteryActivity/EnteryActivity.qml
@@ -36,8 +39,20 @@ qt_add_qml_module(projectPracticum
     qml/NavigationActivity/NavigationSideBar.qml
 
     qml/NavigationActivity/NavigationFrame/TestFrame.qml
+    qml/NavigationActivity/NavigationFrame/TestStartFrame.qml
     qml/NavigationActivity/NavigationFrame/Theory.qml
     qml/NavigationActivity/NavigationFrame/Title.qml
+
+    qml/QuestionFrames/Question1.qml
+    qml/QuestionFrames/Question2.qml
+    qml/QuestionFrames/Question3.qml
+    qml/QuestionFrames/Question4.qml
+    qml/QuestionFrames/Question5.qml
+    qml/QuestionFrames/Question6.qml
+    qml/QuestionFrames/Question7.qml
+    qml/QuestionFrames/Question8.qml
+    qml/QuestionFrames/Question9.qml
+    qml/QuestionFrames/Question10.qml
 
     qml/MainActivity.qml
 

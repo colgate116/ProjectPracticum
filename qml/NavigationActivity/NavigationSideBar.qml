@@ -8,7 +8,7 @@ ItemDelegate {
     id: sideBar
     z: 3
     visible: false
-    width: 300
+    width: 250
     background: Image {
         source: "qrc:/path/imgs/MTUCI.jpg"
         anchors.fill: parent

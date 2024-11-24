@@ -78,7 +78,7 @@ ItemDelegate {
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
-        TestFrame {
+        TestStartFrame {
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
