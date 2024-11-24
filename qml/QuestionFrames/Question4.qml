@@ -11,9 +11,11 @@ Item {
 
     ColumnLayout {
         anchors {
-            centerIn: parent
+            top: parent.top
+            topMargin: 200
+            horizontalCenter: parent.horizontalCenter
         }
-        spacing: -3
+        spacing: -2
         RowLayout {
             id: _row
             ComboBox {
@@ -26,14 +28,16 @@ Item {
                 }
             }
             Text {
-                text: qsTr("текст текст текст текст текст текст")
+                text: qsTr("текст текст текст текст текст")
                 font.pointSize: 14
+                maximumLineCount: 30
                 Layout.alignment: Qt.AlignBottom
             }
         }
         Text {
             Layout.preferredWidth: _row.width
             wrapMode: Text.Wrap
+            maximumLineCount: 30
             text: qsTr("текст текст текст текст текст текст текст текст текст текст текст текст текст " +
                        "текст текст текст текст тексттекст текст текст текст текст текст текст текст текст текст текст текст " +
                        "текст текст текст текст тексттекст текст текст текст текст текст текст текст текст текст текст текст ")

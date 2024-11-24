@@ -26,14 +26,14 @@ Item {
                     Layout.preferredHeight: 40
                     btnText.text: index + 1
                     btnText.font.pointSize: 20
-                    btnText.color: selectedQuestion === index ? "black" : Material.color(Material.Grey)
+                    btnText.color: selectedQuestion === index ? "White" : Material.color(Material.Grey)
                     background: Rectangle {
                         anchors.fill: parent
-                        color: "black"
+                        color: Material.color( Material.Teal )
                         opacity: if (hovered)
-                                    return 0.2
+                                    return 0.4
                                 else if (index === selectedQuestion)
-                                    return 0.25
+                                    return 0.3
                                 else
                                     return 0
                     }
@@ -46,6 +46,7 @@ Item {
         }
     }
     ProgressBar {
+        // todo поменять цвет
         id: timeLine
         width: parent.width
         height: 2

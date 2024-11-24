@@ -16,14 +16,15 @@ Item {
             topMargin: 50
         }
     }
-
     ColumnLayout {
         spacing: 5
         anchors {
-            centerIn: parent
+            top: parent.top
+            topMargin: 200
+            horizontalCenter: parent.horizontalCenter
         }
         Repeater {
-            model: ["a","b","c","d"]
+            model: ["1Текст Текст Текст Текст","2Текст Текст Текст Текст","3Текст Текст Текст Текст","4Текст Текст Текст Текст"]
             RadioButton {
                 Material.accent: Material.Teal
                 text: modelData
@@ -32,6 +33,10 @@ Item {
                     cursorShape: Qt.PointingHandCursor
                 }
             }
+        }
+        Text {
+            text: qsTr("Выбранный ответ:" )
+            font.pointSize: 14
         }
     }
     SaveButton {

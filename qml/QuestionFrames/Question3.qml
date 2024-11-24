@@ -6,6 +6,7 @@ import QtQuick.Layouts
 
 
 Item {
+    property var checkedArray: [0, 0, 0, 0]
     QuestionFrame {
         placeholderText: qsTr("Выбор ответа (возможно несколько вариантов)")
     }
@@ -16,11 +17,12 @@ Item {
             topMargin: 50
         }
     }
-
     ColumnLayout {
         spacing: 5
         anchors {
-            centerIn: parent
+            top: parent.top
+            topMargin: 200
+            horizontalCenter: parent.horizontalCenter
         }
         Repeater {
             model: ["a","b","c","d"]
@@ -31,8 +33,21 @@ Item {
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
                 }
+                onCheckStateChanged: {
+                    if (checked) {
+                        checkedArray[index] = 1
+                    }
+                    else {
+                        checkedArray[index] = 0
+                    }
+                }
             }
         }
+        Text {
+            text: qsTr("Выбранный ответ:" )
+            font.pointSize: 14
+        }
+
     }
     SaveButton {
 
