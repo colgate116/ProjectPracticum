@@ -2,8 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls.Material
 
 ItemDelegate {
-    property string btnText: ""
-    property var textColor: Material.color(Material.Grey)
+    property alias btnText: txt
     height: 40
     background: Rectangle {
         anchors.fill: parent
@@ -11,14 +10,12 @@ ItemDelegate {
         opacity: hovered ? 0.2 : 0
     }
     Text {
-        text: btnText
+        id: txt
         font.pointSize: 16
-        color: textColor
-        anchors {
-            left: parent.left
-            leftMargin: 10
-        }
+        color: Material.color(Material.Grey)
+        anchors.centerIn: parent
     }
+
     HoverHandler {
         cursorShape: Qt.PointingHandCursor
     }

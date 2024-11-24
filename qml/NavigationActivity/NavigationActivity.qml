@@ -70,9 +70,18 @@ ItemDelegate {
             top: line.bottom
         }
         id: navigationStack
-        Title {}
-        Theory {}
-        Item {}
+        Title {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
+        Theory {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
+        TestFrame {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
         Item {
         }
     }

@@ -35,6 +35,7 @@ qt_add_qml_module(projectPracticum
     qml/NavigationActivity/NavigationActivity.qml
     qml/NavigationActivity/NavigationSideBar.qml
 
+    qml/NavigationActivity/NavigationFrame/TestFrame.qml
     qml/NavigationActivity/NavigationFrame/Theory.qml
     qml/NavigationActivity/NavigationFrame/Title.qml
 

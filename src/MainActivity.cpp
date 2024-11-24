@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     engine.load(url);   // загружаем файл qml
 
     SqliteDataBase db;
-    db.create();
+    //db.create();
 
     return app.exec();
 }

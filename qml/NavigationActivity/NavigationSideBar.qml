@@ -28,10 +28,10 @@ ItemDelegate {
         font.pointSize: 16
         color: Material.color(Material.Grey)
         anchors {
-            left: parent.left
-            leftMargin: 10
+            horizontalCenter: parent.horizontalCenter
             top: parent.top
             topMargin: 20
+
         }
     }
     Rectangle {
@@ -61,8 +61,11 @@ ItemDelegate {
             TextButton {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 40
-                btnText: modelData
+                btnText {
+                    text: modelData
+                }
                 onReleased: {
+                    //todo signal
                     navigationStack.currentIndex = index
                     fragmentName.text = modelData
                     sideBar.visible = false
@@ -85,8 +88,10 @@ ItemDelegate {
     }
     TextButton {
         id: exitBtn
-        btnText: qsTr("Выход из аккаунта")
-        textColor: Material.color(Material.Red)
+        btnText {
+            text: qsTr("Выход из аккаунта")
+            color: Material.color(Material.Red)
+        }
         anchors {
             bottom: parent.bottom
             bottomMargin: 20
