@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
+import app
 
 Window {
     height: 1200
@@ -15,5 +16,9 @@ Window {
         id: stack
         anchors.fill: parent
         initialItem: "qrc:/path/qml/EnteryActivity/EnteryActivity.qml"
+    }
+
+    DataBase {
+        id: db
     }
 }

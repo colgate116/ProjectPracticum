@@ -7,6 +7,7 @@ ItemDelegate {
         spacing: 40
         width: parent.width
         TextField {
+            id: loginReg
             placeholderText: qsTr("Придумайте логин")
             Layout.fillWidth: true
             font.pointSize: 16
@@ -66,6 +67,16 @@ ItemDelegate {
             Material.background: Material.DeepPurple
             HoverHandler {
                 cursorShape: Qt.PointingHandCursor
+            }
+            onReleased: {
+                if ( passwordCreateField.text === passwordRepeatField.text )
+                {
+                    db.insertNewUser( loginReg.text, passwordCreateField.text )
+                }
+                else
+                {
+                    console.log( "Пароли не совпали" )
+                }
             }
         }
     }

@@ -11,6 +11,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
+    qmlRegisterType<SqliteDataBase>( "app", 1, 0, "DataBase" );
+
     const QUrl url("qrc:/path/qml/MainActivity.qml"); // ссылка на файл qml
     engine.load(url);   // загружаем файл qml
 
