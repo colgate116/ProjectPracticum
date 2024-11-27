@@ -7,6 +7,7 @@ Item {
         spacing: 20
         width: parent.width
         TextField {
+            id: loginField
             placeholderText: qsTr("Логин")
             Layout.fillWidth: true
             font.pointSize: 16
@@ -60,7 +61,8 @@ Item {
             }
             onClicked: {
                 //todo signal
-                stack.push( "qrc:/path/qml/NavigationActivity/NavigationActivity.qml" )
+                if ( db.signIn( loginField.text, passwordField.text ) )
+                    stack.push( "qrc:/path/qml/NavigationActivity/NavigationActivity.qml" )
             }
         }
     }

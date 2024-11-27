@@ -60,6 +60,26 @@ void SqliteDataBase::create()
     createTable( createStatisticTable );
 }
 
+bool SqliteDataBase::signIn( const QString& user, const QString& password )
+{
+    QString queryText = "SELECT " + PASSWORD + " FROM " + USERS_TABLE_NAME + " WHERE " + USER_NAME + " = '" + user + "'";
+    QCryptographicHash hash( QCryptographicHash::Sha256 );
+    hash.addData( password.toUtf8() );
+    QString hashedPassword = hash.result().toHex();
+    QSqlQuery query;
+    query.prepare( queryText );
+    if ( !query.exec() )
+    {
+        qDebug()<<"Error:" << db.lastError();
+        return false;
+    }
+    query.next();
+    qDebug() << query.value(0);
+    qDebug() << hashedPassword;
+    qDebug() << (query.value(0).toString() == hashedPassword);
+    return query.value(0).toString() == hashedPassword;
+}
+
 void SqliteDataBase::insertNewUser( const QString& user, const QString& password )
 {
     QString queryText = "INSERT INTO " + USERS_TABLE_NAME + "( " +
@@ -67,7 +87,10 @@ void SqliteDataBase::insertNewUser( const QString& user, const QString& password
     QSqlQuery query;
     query.prepare( queryText );
     query.bindValue( ":user", user );
-    query.bindValue( ":password", password );
+    QCryptographicHash hash( QCryptographicHash::Sha256 );
+    hash.addData( password.toUtf8() );
+    QByteArray hashed = hash.result();
+    query.bindValue( ":password", hashed.toHex() );
     if ( isUserUnique( user ) )
     {
         qDebug() << "Такой пользователь уже существует";
@@ -126,7 +149,6 @@ bool SqliteDataBase::isUserUnique( const QString& name )
         return false;
     }
     query.next();
-    qDebug() << query.executedQuery();
-    return query.value(0) == 0 ? false : true;
+    return query.value(0) != 0;
 }
 

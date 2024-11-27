@@ -7,6 +7,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QObject>
+#include <QCryptographicHash>
 
 class SqliteDataBase: public QObject
 {
@@ -14,6 +15,7 @@ class SqliteDataBase: public QObject
 public:
     explicit SqliteDataBase(QObject *parent = nullptr);
     void create();
+    Q_INVOKABLE bool signIn( const QString& user, const QString& password );
     Q_INVOKABLE void insertNewUser( const QString& user, const QString& password );
 public slots:
     void close();
