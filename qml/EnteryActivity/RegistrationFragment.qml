@@ -69,9 +69,19 @@ ItemDelegate {
                 cursorShape: Qt.PointingHandCursor
             }
             onReleased: {
-                if ( passwordCreateField.text === passwordRepeatField.text )
+                if ( passwordCreateField.text === passwordRepeatField.text && passwordCreateField.text.trim() !== "" )
                 {
-                    db.insertNewUser( loginReg.text, passwordCreateField.text )
+                    if (db.insertNewUser( loginReg.text, passwordCreateField.text ))
+                    {
+                        loginReg.text = ""
+                        passwordCreateField.text = ""
+                        passwordRepeatField.text = ""
+                        signInBtn.Material.background = Material.Grey
+                        signInBtn.Material.foreground = "White"
+                        registrationBtn.Material.foreground = Material.Grey
+                        registrationBtn.Material.background = "transparent"
+                        autorizationFrame.currentIndex = 0
+                    }
                 }
                 else
                 {

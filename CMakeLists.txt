@@ -22,6 +22,7 @@ qt_add_qml_module(projectPracticum
     VERSION 1.0
 
     SOURCES
+    src/SettingsManager.h src/SettingsManager.cpp
     src/SqliteDataBase.h src/SqliteDataBase.cpp
 
     QML_FILES

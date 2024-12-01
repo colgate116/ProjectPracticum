@@ -99,7 +99,16 @@ ItemDelegate {
             left: parent.left
         }
         onReleased: {
-            stack.pop()
+            settings.skipAutorization = false
+            settings.saveSkipping()
+            if ( stack.depth === 1 )
+            {
+                stack.replace( "qrc:/path/qml/EnteryActivity/EnteryActivity.qml" )
+            }
+            else
+            {
+                stack.pop()
+            }
         }
     }
 }

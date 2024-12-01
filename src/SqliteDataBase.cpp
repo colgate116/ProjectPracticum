@@ -21,7 +21,12 @@
 
 SqliteDataBase::SqliteDataBase( QObject *parent ): QObject( parent )
 {
+    create();
+}
 
+SqliteDataBase::~SqliteDataBase()
+{
+    close();
 }
 
 void SqliteDataBase::create()
@@ -73,14 +78,11 @@ bool SqliteDataBase::signIn( const QString& user, const QString& password )
         qDebug()<<"Error:" << db.lastError();
         return false;
     }
-    query.next();
-    qDebug() << query.value(0);
-    qDebug() << hashedPassword;
-    qDebug() << (query.value(0).toString() == hashedPassword);
+    query.last();
     return query.value(0).toString() == hashedPassword;
 }
 
-void SqliteDataBase::insertNewUser( const QString& user, const QString& password )
+bool SqliteDataBase::insertNewUser( const QString& user, const QString& password )
 {
     QString queryText = "INSERT INTO " + USERS_TABLE_NAME + "( " +
                         USER_NAME + ", " + PASSWORD + " ) VALUES (:user, :password);";
@@ -91,19 +93,26 @@ void SqliteDataBase::insertNewUser( const QString& user, const QString& password
     hash.addData( password.toUtf8() );
     QByteArray hashed = hash.result();
     query.bindValue( ":password", hashed.toHex() );
-    if ( isUserUnique( user ) )
+    if ( isUserExists( user ) )
     {
         qDebug() << "Такой пользователь уже существует";
-        return;
+        return false;
     }
     if ( query.exec() )
     {
         qDebug() << "Пользователь добавлен";
+        return true;
     }
     else
     {
         qDebug() << db.lastError();
     }
+    return false;
+}
+
+void SqliteDataBase::close() {
+    db.close();
+    qDebug() << "Success: DataBase is closed";
 }
 
 void SqliteDataBase::createTable( const QString query )
@@ -132,12 +141,7 @@ void SqliteDataBase::open() {
 
 }
 
-void SqliteDataBase::close() {
-    db.close();
-    qDebug() << "Success: DataBase is closed";
-}
-
-bool SqliteDataBase::isUserUnique( const QString& name )
+bool SqliteDataBase::isUserExists( const QString& name )
 {
     QString queryText = "SELECT EXISTS ( SELECT " +
                         USER_NAME + " FROM " + USERS_TABLE_NAME +
@@ -148,7 +152,7 @@ bool SqliteDataBase::isUserUnique( const QString& name )
         qDebug()<<"Error:" << db.lastError();
         return false;
     }
-    query.next();
+    query.last();
     return query.value(0) != 0;
 }
 

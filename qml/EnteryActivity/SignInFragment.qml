@@ -62,7 +62,14 @@ Item {
             onClicked: {
                 //todo signal
                 if ( db.signIn( loginField.text, passwordField.text ) )
+                {
+                    settings.skipAutorization = rememberMe.checkState
+                    settings.userName = loginField.text
+                    loginField.text = ""
+                    passwordField.text = ""
+                    settings.saveSkipping()
                     stack.push( "qrc:/path/qml/NavigationActivity/NavigationActivity.qml" )
+                }
             }
         }
     }

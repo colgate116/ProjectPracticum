@@ -15,10 +15,14 @@ Window {
     StackView {
         id: stack
         anchors.fill: parent
-        initialItem: "qrc:/path/qml/EnteryActivity/EnteryActivity.qml"
+        initialItem: settings.skipAutorization && settings.userName.trim() !== ""  &&  db.isUserExists(settings.userName) ? "qrc:/path/qml/NavigationActivity/NavigationActivity.qml" : "qrc:/path/qml/EnteryActivity/EnteryActivity.qml"
     }
 
     DataBase {
         id: db
+    }
+
+    SettingsManager {
+        id: settings
     }
 }
