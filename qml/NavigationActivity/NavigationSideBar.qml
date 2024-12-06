@@ -24,8 +24,9 @@ ItemDelegate {
     }
     Text {
         id: userName
-        text: "userName"
+        text: settings.userName
         font.pointSize: 16
+        wrapMode: Text.Wrap
         color: Material.color(Material.Grey)
         anchors {
             horizontalCenter: parent.horizontalCenter

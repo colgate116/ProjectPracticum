@@ -49,7 +49,6 @@ Item {
         // todo поменять цвет
         id: timeLine
         width: parent.width
-        height: 2
         from: 0
         to: 60*30 // 30 min
         anchors.top: flickable.bottom

@@ -28,7 +28,7 @@ Item {
             model: ["a","b","c","d"]
             CheckBox {
                 Material.accent: Material.Teal
-                text: modelData
+                text: (model.index + 1) + ") " + modelData
                 font.pointSize: 14
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
@@ -40,16 +40,30 @@ Item {
                     else {
                         checkedArray[index] = 0
                     }
+                    answer3.text = qsTr("Выбранный ответ: " ) + convertToAnswer()
                 }
             }
         }
         Text {
-            text: qsTr("Выбранный ответ:" )
+            id: answer3
+            Layout.leftMargin: 8
+            text: qsTr("Выбранный ответ: " )
             font.pointSize: 14
         }
 
     }
     SaveButton {
 
+    }
+
+    function convertToAnswer()
+    {
+        let ans = ""
+        for ( let i = 0; i < checkedArray.length; i++ )
+        {
+            if ( checkedArray[i] === 1 )
+                ans += (i + 1) + " "
+        }
+        return ans
     }
 }

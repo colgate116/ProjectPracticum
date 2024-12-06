@@ -27,15 +27,20 @@ Item {
             model: ["1Текст Текст Текст Текст","2Текст Текст Текст Текст","3Текст Текст Текст Текст","4Текст Текст Текст Текст"]
             RadioButton {
                 Material.accent: Material.Teal
-                text: modelData
+                text: (model.index + 1) + ") " + modelData
                 font.pointSize: 14
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
                 }
+                onFocusChanged: {
+                    answer2.text = qsTr("Выбранный ответ: " ) + (model.index + 1)
+                }
             }
         }
         Text {
-            text: qsTr("Выбранный ответ:" )
+            id: answer2
+            Layout.leftMargin: 10
+            text: qsTr("Выбранный ответ: " )
             font.pointSize: 14
         }
     }
