@@ -14,6 +14,7 @@ import QtQuick.Layouts
 
 Item {
     property string answer: "импортозамещения"
+    property string userAnswer: ""
     ColumnLayout {
         width: Math.min( 450, parent.width - 10)
         spacing: -2
@@ -34,12 +35,26 @@ Item {
                 text: qsTr("Пропущенное слово: ")
             }
             CustomTextField {
+                id: answerField
                 Layout.preferredHeight: 50
                 Layout.fillWidth: true
                 font.pointSize: 14
+                onTextChanged: {
+                    answerNotSaved()
+                }
             }
         }
     }
     SaveButton {
+        onPushed: {
+            userAnswer = answerField.text.trim().toLowerCase()
+            if ( answer === answerField.text.trim().toLowerCase() ) {
+                rightAnswer()
+            }
+            else
+            {
+                wrongAnswer()
+            }
+        }
     }
 }

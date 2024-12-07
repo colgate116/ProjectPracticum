@@ -11,7 +11,7 @@ Item {
         qsTr("Риск дефолта"),
         qsTr("Риск природной катастрофы"),
         qsTr("Финансовый риск")]
-    property var rightAnswer: [1, 0, 0, 1]
+    property var answer: [1, 0, 0, 1]
 
     TaskText {
         text: qsTr("На сегодняшний день каждый российский бизнес сталкивается с рисками:")
@@ -37,6 +37,7 @@ Item {
                     cursorShape: Qt.PointingHandCursor
                 }
                 onCheckStateChanged: {
+                    answerNotSaved()
                     if (checked) {
                         checkedArray[index] = 1
                     }
@@ -55,7 +56,15 @@ Item {
 
     }
     SaveButton {
-
+        onPushed: {
+            if ( compareAnswers() ) {
+                rightAnswer()
+            }
+            else
+            {
+                wrongAnswer()
+            }
+        }
     }
 
     function convertToAnswer()
@@ -67,5 +76,13 @@ Item {
                 ans += (i + 1) + " "
         }
         return ans
+    }
+    function compareAnswers() {
+        for (let i = 0; i < 4; i++) {
+            if (answer[i] !== checkedArray[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 }

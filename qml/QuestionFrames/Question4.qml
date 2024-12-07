@@ -15,6 +15,7 @@ Item {
         qsTr("делегирование")
     ]
     property int answer: 2
+    property int userAnswer: 0
     ColumnLayout {
         width: Math.min( 450, parent.width - 10)
         anchors {
@@ -42,10 +43,27 @@ Item {
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
                 }
+                onCurrentIndexChanged: {
+                    if (userAnswer === currentIndex) {
+                        return
+                    }
+                    userAnswer = currentIndex
+                    answerNotSaved()
+                }
             }
         }
     }
     SaveButton {
-
+        onPushed: {
+            if ( answer === userAnswer ) {
+                rightAnswer()
+                console.log(2)
+            }
+            else
+            {
+                console.log(0)
+                wrongAnswer()
+            }
+        }
     }
 }

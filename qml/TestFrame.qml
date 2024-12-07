@@ -7,7 +7,14 @@ import "QuestionFrames"
 Item {
     id: testFrame
 
-    signal saveAnswer
+    property var answeredQuestions: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    property var answerRes: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    signal rightAnswer()
+    signal wrongAnswer()
+
+    signal saveAnswer()
+    signal answerNotSaved()
     property int selectedQuestion: 0
 
     Pane {
@@ -35,6 +42,7 @@ Item {
                     btnText.font.pointSize: 20
                     btnText.color: selectedQuestion === index ? "White" : Material.color(Material.Grey)
                     background: Rectangle {
+                        radius: 5
                         anchors.fill: parent
                         color: Material.color( Material.Teal )
                         opacity: if (hovered)
@@ -42,7 +50,10 @@ Item {
                                 else if (index === selectedQuestion)
                                     return 0.3
                                 else
-                                    return 0
+                                     if (answeredQuestions[index] === 1)
+                                         return 0.1
+                                    else
+                                        return 0
                     }
                     onReleased: {
                         selectedQuestion = index
@@ -120,9 +131,18 @@ Item {
     Component.onCompleted: {
         timer.start()
     }
-
+    onAnswerNotSaved: {
+        testFrame.answeredQuestions[swipeView.currentIndex] = 0
+    }
     onSaveAnswer: {
+        testFrame.answeredQuestions[swipeView.currentIndex] = 1
         swipeView.currentIndex ++
         selectedQuestion = swipeView.currentIndex
+    }
+    onRightAnswer: {
+        answerRes[swipeView.currentIndex] = 1
+    }
+    onWrongAnswer: {
+        answerRes[swipeView.currentIndex] = 0
     }
 }

@@ -10,7 +10,8 @@ Item {
         qsTr("Рост российского несырьевого\nэкспорта"),
         qsTr("Привлечение иностранных\nинвестиций"),
         qsTr("Увелечение импорта товаров\nдружественных стран")]
-    property int rightAnswer: 1
+    property int answer: 1
+    property int userAnswer: -1
     TaskText {
         id: task2
         text: qsTr("В связи с санкционной политикой западных стран главной целью развитие российской экономики является:")
@@ -36,6 +37,11 @@ Item {
                     cursorShape: Qt.PointingHandCursor
                 }
                 onFocusChanged: {
+                    if (userAnswer === model.index) {
+                        return
+                    }
+                    answerNotSaved()
+                    userAnswer = model.index
                     answer2.text = qsTr("Выбранный ответ: " ) + (model.index + 1)
                 }
             }
@@ -47,6 +53,14 @@ Item {
         }
     }
     SaveButton {
-
+        onPushed: {
+            if ( answer === userAnswer ) {
+                rightAnswer()
+            }
+            else
+            {
+                wrongAnswer()
+            }
+        }
     }
 }
