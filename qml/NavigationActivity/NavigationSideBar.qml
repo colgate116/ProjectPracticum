@@ -1,12 +1,33 @@
 import QtQuick 2.15
 import QtQuick.Layouts
 import QtQuick.Controls.Material
-
 import "../Component"
 
 ItemDelegate {
     id: sideBar
-    z: 3
+
+    signal sideBarOpened
+    signal sideBarClosed
+
+    onSideBarOpened: {
+        blur.visible = true
+        openAnimation.start()
+    }
+
+    onSideBarClosed: {
+        blur.visible = false
+    }
+
+    onVisibleChanged: {
+        if ( visible ) {
+            sideBarOpened()
+        }
+        else {
+            sideBarClosed()
+        }
+    }
+
+    z: 5
     visible: false
     width: 250
     background: Image {
@@ -21,6 +42,23 @@ ItemDelegate {
                 GradientStop { position: 1.0; color: "Black" }
             }
         }
+    }
+
+    PropertyAnimation {
+        id: openAnimation
+        target: sideBar
+        properties: "width"
+        from: 0
+        to: width
+        duration: 100
+    }
+    PropertyAnimation {
+        id: closeAnimation
+        target: sideBar
+        properties: "width"
+        from: width
+        to: 0
+        duration: 100
     }
     Text {
         id: userName
@@ -66,7 +104,6 @@ ItemDelegate {
                     text: modelData
                 }
                 onReleased: {
-                    //todo signal
                     navigationStack.currentIndex = index
                     fragmentName.text = modelData
                     sideBar.visible = false

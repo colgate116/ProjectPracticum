@@ -6,9 +6,18 @@ import "../Component"
 import "NavigationFrame"
 
 
-Item {
+Item {    
     Pane {
         anchors.fill: parent
+    }
+
+    PropertyAnimation {
+        id: bluring
+        target: blur
+        property: "opacity"
+        from: 0
+        to: 0.8
+        duration: 20
     }
 
     NavigationSideBar {
@@ -17,6 +26,20 @@ Item {
             left: parent.left
             top: parent.top
             bottom: parent.bottom
+        }
+    }
+
+    Rectangle {
+        id: blur
+        z: 2
+        color: "black"
+        opacity: 0.8
+        visible: false
+        anchors.fill: parent
+        onVisibleChanged: {
+            if (visible) {
+                bluring.start()
+            }
         }
     }
 
@@ -32,6 +55,9 @@ Item {
             leftMargin: 20
         }
         imgSource: "qrc:/path/imgs/navigationBarIcon.svg"
+        onPushed: {
+            navigationSideBar.visible = true
+        }
     }
 
     MouseArea {

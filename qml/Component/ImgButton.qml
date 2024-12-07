@@ -3,6 +3,9 @@ import QtQuick.Controls.Material
 
 ItemDelegate {
     id: btn
+
+    signal pushed
+
     property var imgSource
     property alias hoveredArea: mouseArea
     Image {
@@ -13,7 +16,7 @@ ItemDelegate {
             id: mouseArea
             anchors.fill: parent
             onReleased: {
-                navigationSideBar.visible = true
+                pushed()
             }
             cursorShape: Qt.PointingHandCursor
         }
