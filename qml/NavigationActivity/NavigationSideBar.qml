@@ -52,14 +52,6 @@ ItemDelegate {
         to: width
         duration: 100
     }
-    PropertyAnimation {
-        id: closeAnimation
-        target: sideBar
-        properties: "width"
-        from: width
-        to: 0
-        duration: 100
-    }
     Text {
         id: userName
         text: settings.userName
