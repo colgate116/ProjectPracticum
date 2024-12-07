@@ -7,15 +7,21 @@ import QtQuick.Layouts
 
 Item {
     property var checkedArray: [0, 0, 0, 0]
+    property var answers: [qsTr("Риск развития"),
+        qsTr("Риск дефолта"),
+        qsTr("Риск природной катастрофы"),
+        qsTr("Финансовый риск")]
+    property var rightAnswer: [1, 0, 0, 1]
 
     TaskText {
-        text: qsTr("Текст задания Текст задания Текст задания Текст задания")
+        text: qsTr("На сегодняшний день каждый российский бизнес сталкивается с рисками:")
         anchors {
             top: parent.top
             topMargin: 50
         }
     }
     ColumnLayout {
+        width: 280
         spacing: 5
         anchors {
             top: parent.top
@@ -23,10 +29,10 @@ Item {
             horizontalCenter: parent.horizontalCenter
         }
         Repeater {
-            model: ["a","b","c","d"]
+            model: answers
             CheckBox {
                 text: (model.index + 1) + ") " + modelData
-                font.pointSize: 14
+                font.pointSize: 16
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
                 }

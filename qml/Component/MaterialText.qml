@@ -11,5 +11,5 @@ Text {
             default:
                 return "black"
            }
-    font.pointSize: 14
+    font.pointSize: 16
 }

@@ -3,37 +3,42 @@ import QtQuick.Controls.Material
 import "../Component"
 import QtQuick.Layouts
 
+/*
+Введение санкций, несмотря на ряд отрицательных последствий для экономики страны,
+в отношении которой они вводятся, позволяет выявить скрытый экономический потенциал
+в различных ее отраслях, мобилизовать имеющиеся ресурсы и направить их на развитие
+национальной конкурентоспособной экономики. В этой связи становится весьма актуальной
+политика импортозамещения, т.е. производство отечественных аналогов зарубежных товаров.
+*/
+
 
 Item {
+    property string answer: "импортозамещения"
     ColumnLayout {
+        width: Math.min( 450, parent.width - 10)
         spacing: -2
         anchors {
             top: parent.top
-            topMargin: 200
+            topMargin: 130
             horizontalCenter: parent.horizontalCenter
         }
+        MaterialText {
+            Layout.fillWidth: true
+            wrapMode: Text.Wrap
+            horizontalAlignment: Text.AlignJustify
+            text: qsTr("Введение санкций, несмотря на ряд отрицательных последствий для экономики страны,в отношении которой они вводятся, позволяет выявить скрытый экономический потенциал в различных ее отраслях, мобилизовать имеющиеся ресурсы и направить их на развитие национальной конкурентоспособной экономики. В этой связи становится весьма актуальной политика ***, т.е. производство отечественных аналогов зарубежных товаров.")
+        }
         RowLayout {
-            id: _row
+            MaterialText {
+                wrapMode: Text.Wrap
+                text: qsTr("Пропущенное слово: ")
+            }
             CustomTextField {
-                Layout.preferredHeight: 38
+                Layout.preferredHeight: 50
                 font.pointSize: 14
             }
-            MaterialText {
-                text: qsTr("текст текст текст текст текст")
-                maximumLineCount: 30
-                Layout.alignment: Qt.AlignBottom
-            }
-        }
-        MaterialText {
-            Layout.preferredWidth: _row.width
-            wrapMode: Text.Wrap
-            maximumLineCount: 30
-            text: qsTr("текст текст текст текст текст текст текст текст текст текст текст текст текст " +
-                       "текст текст текст текст тексттекст текст текст текст текст текст текст текст текст текст текст текст " +
-                       "текст текст текст текст тексттекст текст текст текст текст текст текст текст текст текст текст текст ")
         }
     }
     SaveButton {
-
     }
 }

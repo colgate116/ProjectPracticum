@@ -8,7 +8,7 @@ Item {
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.topMargin: 40
+        anchors.topMargin: 10
         spacing: 10
 
         Repeater{

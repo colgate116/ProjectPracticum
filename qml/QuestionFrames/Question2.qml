@@ -6,14 +6,20 @@ import QtQuick.Layouts
 
 
 Item {
+    property var answers: [qsTr("Увеличение добычи и экспорта\nуглеводородов"),
+        qsTr("Рост российского несырьевого\nэкспорта"),
+        qsTr("Привлечение иностранных\nинвестиций"),
+        qsTr("Увелечение импорта товаров\nдружественных стран")]
+    property int rightAnswer: 2
     TaskText {
-        text: qsTr("Текст задания Текст задания Текст задания Текст задания")
+        text: qsTr("В связи с санкционной политикой западных стран главной целью развитие российской экономики является:")
         anchors {
             top: parent.top
             topMargin: 50
         }
     }
     ColumnLayout {
+        width: 300
         spacing: 5
         anchors {
             top: parent.top
@@ -21,10 +27,10 @@ Item {
             horizontalCenter: parent.horizontalCenter
         }
         Repeater {
-            model: ["1Текст Текст Текст Текст","2Текст Текст Текст Текст","3Текст Текст Текст Текст","4Текст Текст Текст Текст"]
+            model: answers
             RadioButton {
                 text: (model.index + 1) + ") " + modelData
-                font.pointSize: 14
+                font.pointSize: 16
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
                 }

@@ -4,13 +4,17 @@ import QtQuick.Controls.Material
 import "Component"
 import "QuestionFrames"
 
-Pane {
+Item {
     id: testFrame
 
     signal saveAnswer
     property int selectedQuestion: 0
 
     Material.accent: Material.Teal
+
+    Pane {
+        anchors.fill: parent
+    }
 
     Flickable {
         id: flickable
