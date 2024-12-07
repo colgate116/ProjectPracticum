@@ -6,9 +6,6 @@ import QtQuick.Layouts
 
 
 Item {
-    QuestionFrame {
-        placeholderText: qsTr("Выбор ответа (один вариант)")
-    }
     TaskText {
         text: qsTr("Текст задания Текст задания Текст задания Текст задания")
         anchors {
@@ -26,7 +23,6 @@ Item {
         Repeater {
             model: ["1Текст Текст Текст Текст","2Текст Текст Текст Текст","3Текст Текст Текст Текст","4Текст Текст Текст Текст"]
             RadioButton {
-                Material.accent: Material.Teal
                 text: (model.index + 1) + ") " + modelData
                 font.pointSize: 14
                 HoverHandler {
@@ -37,11 +33,10 @@ Item {
                 }
             }
         }
-        Text {
+        MaterialText {
             id: answer2
             Layout.leftMargin: 10
             text: qsTr("Выбранный ответ: " )
-            font.pointSize: 14
         }
     }
     SaveButton {

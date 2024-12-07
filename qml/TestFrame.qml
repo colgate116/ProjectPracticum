@@ -1,12 +1,17 @@
 import QtQuick 2.15
 import QtQuick.Layouts
 import QtQuick.Controls.Material
-import "../../Component"
-import "../../QuestionFrames"
+import "Component"
+import "QuestionFrames"
 
-Item {
+Pane {
+    id: testFrame
+
     signal saveAnswer
     property int selectedQuestion: 0
+
+    Material.accent: Material.Teal
+
     Flickable {
         id: flickable
         width: contentWidth <= parent.width ? contentWidth : parent.width

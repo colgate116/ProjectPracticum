@@ -3,14 +3,16 @@ import QtQuick.Controls.Material
 import app
 
 Window {
+    id: window
     height: 1200
     width: 900
     minimumHeight: 650
     minimumWidth: 700
-    id: window
     visible: true
     visibility: Window.Maximized
     title: qsTr("Программа для тестирования")
+
+    Material.theme: Material.Dark
 
     StackView {
         id: stack

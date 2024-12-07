@@ -26,8 +26,10 @@ qt_add_qml_module(projectPracticum
     src/SqliteDataBase.h src/SqliteDataBase.cpp
 
     QML_FILES
+    qml/Component/BoxFrame.qml
+    qml/Component/CustomTextField.qml
     qml/Component/ImgButton.qml
-    qml/Component/QuestionFrame.qml
+    qml/Component/MaterialText.qml
     qml/Component/SaveButton.qml
     qml/Component/TaskText.qml
     qml/Component/TextButton.qml
@@ -39,7 +41,6 @@ qt_add_qml_module(projectPracticum
     qml/NavigationActivity/NavigationActivity.qml
     qml/NavigationActivity/NavigationSideBar.qml
 
-    qml/NavigationActivity/NavigationFrame/TestFrame.qml
     qml/NavigationActivity/NavigationFrame/TestStartFrame.qml
     qml/NavigationActivity/NavigationFrame/Theory.qml
     qml/NavigationActivity/NavigationFrame/Title.qml
@@ -56,6 +57,7 @@ qt_add_qml_module(projectPracticum
     qml/QuestionFrames/Question10.qml
 
     qml/MainActivity.qml
+    qml/TestFrame.qml
 
     RESOURCES
     imgs/MTUCI.jpg

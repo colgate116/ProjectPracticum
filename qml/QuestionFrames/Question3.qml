@@ -7,9 +7,7 @@ import QtQuick.Layouts
 
 Item {
     property var checkedArray: [0, 0, 0, 0]
-    QuestionFrame {
-        placeholderText: qsTr("Выбор ответа (возможно несколько вариантов)")
-    }
+
     TaskText {
         text: qsTr("Текст задания Текст задания Текст задания Текст задания")
         anchors {
@@ -27,7 +25,6 @@ Item {
         Repeater {
             model: ["a","b","c","d"]
             CheckBox {
-                Material.accent: Material.Teal
                 text: (model.index + 1) + ") " + modelData
                 font.pointSize: 14
                 HoverHandler {
@@ -44,11 +41,10 @@ Item {
                 }
             }
         }
-        Text {
+        MaterialText {
             id: answer3
             Layout.leftMargin: 8
             text: qsTr("Выбранный ответ: " )
-            font.pointSize: 14
         }
 
     }

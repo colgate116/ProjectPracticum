@@ -9,7 +9,7 @@ Item {
     Button {
         text: qsTr("start")
         onReleased: {
-            stack.push( "qrc:/path/qml/NavigationActivity/NavigationFrame/TestFrame.qml" )
+            stack.push( "qrc:/path/qml/TestFrame.qml" )
         }
     }
 }

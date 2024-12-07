@@ -9,7 +9,7 @@ Button {
     anchors {
         bottom: parent.bottom
         right: parent.right
-        margins: 40
+        margins: 10
     }
     onReleased: {
         saveAnswer()

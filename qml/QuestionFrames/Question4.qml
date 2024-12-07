@@ -5,10 +5,6 @@ import QtQuick.Layouts
 
 
 Item {
-    QuestionFrame {
-        placeholderText: qsTr("Впишите пропущенное слово")
-    }
-
     ColumnLayout {
         anchors {
             top: parent.top
@@ -19,7 +15,6 @@ Item {
         RowLayout {
             id: _row
             ComboBox {
-                Material.accent: Material.Teal
                 Layout.preferredHeight: 50
                 font.pointSize: 14
                 model: [1,2,3,4,5]
@@ -27,21 +22,19 @@ Item {
                     cursorShape: Qt.PointingHandCursor
                 }
             }
-            Text {
+            MaterialText {
                 text: qsTr("текст текст текст текст текст")
-                font.pointSize: 14
                 maximumLineCount: 30
                 Layout.alignment: Qt.AlignBottom
             }
         }
-        Text {
+        MaterialText {
             Layout.preferredWidth: _row.width
             wrapMode: Text.Wrap
             maximumLineCount: 30
             text: qsTr("текст текст текст текст текст текст текст текст текст текст текст текст текст " +
                        "текст текст текст текст тексттекст текст текст текст текст текст текст текст текст текст текст текст " +
                        "текст текст текст текст тексттекст текст текст текст текст текст текст текст текст текст текст текст ")
-            font.pointSize: 14
         }
     }
     SaveButton {

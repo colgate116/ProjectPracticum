@@ -6,10 +6,9 @@ import "../Component"
 import "NavigationFrame"
 
 
-ItemDelegate {
-    background: Rectangle {
-        id: background
-        color: "#252D40"
+Item {
+    Pane {
+        anchors.fill: parent
     }
 
     NavigationSideBar {
@@ -22,6 +21,7 @@ ItemDelegate {
     }
 
     ImgButton {
+        z: 2
         id: navigationSideBarBtn
         height: 40
         width: 40
@@ -34,11 +34,15 @@ ItemDelegate {
         imgSource: "qrc:/path/imgs/navigationBarIcon.svg"
     }
 
-    onReleased: {
-        if ( navigationSideBar.visible ) {
-            navigationSideBar.visible = false
+    MouseArea {
+        anchors.fill: parent
+        onReleased: {
+            if ( navigationSideBar.visible ) {
+                navigationSideBar.visible = false
+            }
         }
     }
+
     Text {
         id: fragmentName
         anchors {

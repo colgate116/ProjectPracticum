@@ -6,9 +6,6 @@ import QtQuick.Layouts
 
 
 Item {
-    QuestionFrame {
-        placeholderText: qsTr("Выбор ответа")
-    }
     TaskText {
         id: task
         text: qsTr("Текст задания Текст задания Текст задания Текст задания")
@@ -27,14 +24,13 @@ Item {
         }
         ColumnLayout {
             spacing: 5
-            Text {
+            MaterialText {
                 font.pointSize: 14
                 text: qsTr("Текст текст")
             }
             Repeater {
                 model: ["1Текст Текст Текст Текст","2Текст Текст Текст Текст","3Текст Текст Текст Текст","4Текст Текст Текст Текст"]
                 RadioButton {
-                    Material.accent: Material.Teal
                     text: (model.index + 1) + ") " + modelData
                     font.pointSize: 14
                     HoverHandler {
@@ -45,14 +41,12 @@ Item {
         }
         ColumnLayout {
             spacing: 5
-            Text {
-                font.pointSize: 14
+            MaterialText {
                 text: qsTr("Текст текст")
             }
             Repeater {
                 model: ["a","b","c","d"]
                 CheckBox {
-                    Material.accent: Material.Teal
                     text: (model.index + 1) + ") " + modelData
                     font.pointSize: 14
                     HoverHandler {
@@ -62,17 +56,14 @@ Item {
             }
         }
     }
-    Rectangle {
+    BoxFrame {
         anchors {
             top: row.bottom
-            topMargin: 50
-            left: parent.left
-            leftMargin: 50
-            right: parent.right
-            rightMargin: 50
+            bottom: saveBtn.top
+            right: task.right
+            left: task.left
+            margins: 10
         }
-        radius: 5
-        border.color: Material.color( Material.Grey )
     }
 
     SaveButton {

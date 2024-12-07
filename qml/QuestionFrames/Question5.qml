@@ -5,21 +5,17 @@ import "../Component"
 
 Item {
     id: root
-    QuestionFrame {
-        placeholderText: qsTr("Сопоставьте ответы")
-    }
+
     ColumnLayout {
         anchors {
             top: parent.top
             topMargin: 50
             left: parent.left
-            leftMargin: 50
+            leftMargin: 20
             right: parent.right
-            rightMargin: 50
+            rightMargin: 20
         }
-        Rectangle {
-            radius: 5
-            border.color: Material.color( Material.Grey )
+        BoxFrame {
             Layout.fillWidth: true
             Layout.preferredHeight: 160
             ListView {
@@ -46,7 +42,7 @@ Item {
                         }
                     }
                 delegate:
-                    Text {
+                    MaterialText {
                         height: 30
                         width: list.width
                         font.pointSize: 16
@@ -74,17 +70,14 @@ Item {
             model: 4
             ColumnLayout {
                 spacing: -5
-                Text {
+                MaterialText {
                     text: qsTr("Текст текст текст текст")
-                    font.pointSize: 14
                 }
                 RowLayout {
-                    TextField {
+                    CustomTextField {
                         id: answerField
-                        Material.accent: Material.Teal
                         Layout.preferredHeight: 38
                         Layout.fillWidth: true
-                        font.pointSize: 14
                         readOnly: true
                     }
                     Button {
