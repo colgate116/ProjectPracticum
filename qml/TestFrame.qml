@@ -10,8 +10,6 @@ Item {
     signal saveAnswer
     property int selectedQuestion: 0
 
-    Material.accent: Material.Teal
-
     Pane {
         anchors.fill: parent
     }
@@ -55,11 +53,10 @@ Item {
         }
     }
     ProgressBar {
-        // todo поменять цвет
         id: timeLine
         width: parent.width
         from: 0
-        to: 60*30 // 30 min
+        to: 60*15 // 15 min
         anchors.top: flickable.bottom
     }
     Timer {

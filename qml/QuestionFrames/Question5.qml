@@ -6,10 +6,18 @@ import "../Component"
 Item {
     id: root
 
-    ColumnLayout {
+    TaskText {
+        id: taskText5
+        text: qsTr("Сопоставьте тип инфроструктуры с её описанием")
         anchors {
             top: parent.top
-            topMargin: 50
+            topMargin: 20
+        }
+    }
+    ColumnLayout {
+        anchors {
+            top: taskText5.bottom
+            topMargin: 20
             left: parent.left
             leftMargin: 20
             right: parent.right
@@ -17,7 +25,7 @@ Item {
         }
         BoxFrame {
             Layout.fillWidth: true
-            Layout.preferredHeight: 160
+            Layout.preferredHeight: 140
             ListView {
                 id: list
                 header: TaskText {
@@ -29,20 +37,21 @@ Item {
                 interactive: false
                 model: ListModel {
                         ListElement {
-                            ans: "kldsfjnsekflm"
+                            ansId: 0
+                            ans: qsTr("Организационная инфраструктура")
                         }
                         ListElement {
-                            ans: "kldsfjnsekflm1"
+                            ansId: 1
+                            ans: qsTr("Экономическая инфраструктура")
                         }
                         ListElement {
-                            ans: "kldsfjnsekflm2"
-                        }
-                        ListElement {
-                            ans: "kldsfjnsekflm3"
+                            ansId: 2
+                            ans: qsTr("Общегосударственная инфраструктура")
                         }
                     }
                 delegate:
                     MaterialText {
+                        clip: true
                         height: 30
                         width: list.width
                         font.pointSize: 16
@@ -67,11 +76,18 @@ Item {
             }
         }
         Repeater {
-            model: 4
+            model: [
+                qsTr("Развитие рыночных отношений, активизация предпринимательства, разработка выходных условий в налоговой политике для бизнеса"),
+                qsTr("Государственное содействие развитию инноваций в целом и оказание кадровой поддержки в частности"),
+                qsTr("Развитие инноваций на всех уровнях и для всех участников инновационного процесса")
+            ]
             ColumnLayout {
-                spacing: -5
+                spacing: -2
+                Layout.preferredWidth: parent.width
                 MaterialText {
-                    text: qsTr("Текст текст текст текст")
+                    wrapMode: Text.Wrap
+                    Layout.fillWidth: true
+                    text: modelData
                 }
                 RowLayout {
                     CustomTextField {
@@ -81,24 +97,25 @@ Item {
                         readOnly: true
                     }
                     Button {
-                        property bool selected: false
+                        property int selectedId: -1
                         text: qsTr("Внести")
                         HoverHandler {
                             cursorShape: Qt.PointingHandCursor
                         }
                         onReleased: {
-                            selected = !selected
-                            if ( selected )
+                            if ( selectedId === -1 )
                             {
                                 answerField.text = list.model.get( list.currentIndex ).ans
+                                selectedId = list.model.get( list.currentIndex ).ansId
                                 text = qsTr("Убрать")
                                 list.model.remove( list.currentIndex )
                             }
                             else
                             {
-                                list.model.append( {"ans": answerField.text} )
+                                list.model.append( {"ansId": selectedId, "ans": answerField.text} )
                                 answerField.text = ""
                                 text = qsTr("Внести")
+                                selectedId = -1
                             }
 
                         }
@@ -109,6 +126,6 @@ Item {
 
     }
     SaveButton {
-
+        id: saveButton5
     }
 }

@@ -8,19 +8,24 @@ Item {
 
     property var checkedArray: [0, 0, 0, 0]
 
+    TaskText {
+        text: qsTr("В связи с санкционной политикой западных стран главной целью развитие российской экономики является:")
+        anchors {
+            top: parent.top
+            topMargin: 50
+        }
+    }
     ColumnLayout {
+        width: Math.min( 450, parent.width - 10)
         anchors {
             top: parent.top
             topMargin: 200
-            left: parent.left
-            leftMargin: 20
-            right: parent.right
-            rightMargin: 20
+            horizontalCenter: parent.horizontalCenter
         }
         spacing: 10
         BoxFrame {
             Layout.fillWidth: true
-            Layout.preferredHeight: 160
+            Layout.preferredHeight: 250
             ListView {
                 id: list
                 header: TaskText {
@@ -45,7 +50,7 @@ Item {
                         }
                     }
                 delegate: CheckBox {
-                    height: 30
+                    height: 50
                     text: (model.index + 1) + ") " + model.ans
                     font.pointSize: 14
                     HoverHandler {

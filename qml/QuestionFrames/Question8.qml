@@ -5,15 +5,9 @@ import QtQuick.Layouts
 
 
 Item {
-    TaskText {
-        text: qsTr("Текст задания Текст задания Текст задания Текст задания")
-        anchors {
-            top: parent.top
-            topMargin: 50
-        }
-    }
+    property int answer8: 2014
     ColumnLayout {
-        width: 400
+        width: Math.min( 450, parent.width - 10)
         spacing: 5
         anchors {
             top: parent.top
@@ -23,16 +17,14 @@ Item {
         MaterialText {
             Layout.fillWidth: true
             wrapMode: Text.Wrap
-            maximumLineCount: 30
-            text: qsTr("текст текст текст текст текст текст текст текст текст текст текст текст текст " +
-                       "текст текст текст текст тексттекст текст текст текст текст текст текст текст текст текст текст текст " +
-                       "текст текст текст текст тексттекст текст текст текст текст текст текст текст текст текст текст текст ")
+            horizontalAlignment: Text.AlignJustify
+            text: qsTr("Укажите год, начала санкционной политики запада в сторону РФ, согласно которой Bloomberg составило экономическую модель, которая демонстрирует разницу фактического и потенциального роста ВВП РФ в 10%, начиная с переода санкционных мер по настоящее время.")
         }
         Slider {
             Layout.fillWidth: true
-            value: 5
-            from: 1
-            to: 10
+            value: 2017
+            from: 2010
+            to: 2024
             snapMode: Slider.SnapAlways
             stepSize: 1
             onMoved: {

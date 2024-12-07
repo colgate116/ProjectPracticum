@@ -12,7 +12,8 @@ Window {
     visibility: Window.Maximized
     title: qsTr("Программа для тестирования")
 
-    Material.theme: Material.Dark
+    Material.theme: Material.System
+    Material.accent: Material.Teal
 
     StackView {
         id: stack

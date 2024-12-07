@@ -14,7 +14,7 @@ Item {
         qsTr("аутсорсинг"),
         qsTr("делегирование")
     ]
-    property int answer: 3
+    property int answer: 2
     ColumnLayout {
         width: Math.min( 450, parent.width - 10)
         anchors {
@@ -35,7 +35,7 @@ Item {
                 maximumLineCount: 30
             }
             ComboBox {
-                Layout.preferredWidth: 200
+                Layout.fillWidth: true
                 Layout.preferredHeight: 50
                 font.pointSize: 16
                 model: answers

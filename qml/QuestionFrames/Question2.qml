@@ -10,8 +10,9 @@ Item {
         qsTr("Рост российского несырьевого\nэкспорта"),
         qsTr("Привлечение иностранных\nинвестиций"),
         qsTr("Увелечение импорта товаров\nдружественных стран")]
-    property int rightAnswer: 2
+    property int rightAnswer: 1
     TaskText {
+        id: task2
         text: qsTr("В связи с санкционной политикой западных стран главной целью развитие российской экономики является:")
         anchors {
             top: parent.top
@@ -22,8 +23,8 @@ Item {
         width: 300
         spacing: 5
         anchors {
-            top: parent.top
-            topMargin: 200
+            top: task2.bottom
+            topMargin: 50
             horizontalCenter: parent.horizontalCenter
         }
         Repeater {

@@ -35,6 +35,7 @@ Item {
             }
             CustomTextField {
                 Layout.preferredHeight: 50
+                Layout.fillWidth: true
                 font.pointSize: 14
             }
         }
