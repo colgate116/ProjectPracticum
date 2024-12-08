@@ -45,15 +45,16 @@ Item {
                             ans: "Ввести проект согласование\nс иными планами работ"
                         }
                         ListElement {
-                            ans: "Производить сопоставительную\nоценку расходов по модернизации\nс результатом от ввода нового оборудования"
+                            ans: "Производить сопоставительную\nоценку расходов по модернизации\nс результатом от ввода оборудования"
                         }
                         ListElement {
                             ans: "Обеспечивать предприятие трудовыми\nресурсами"
                         }
                     }
                 delegate: CheckBox {
+                    clip: true
                     text: (model.index + 1) + ") " + model.ans
-                    font.pointSize: 14
+                    font.pointSize: 16
                     HoverHandler {
                         cursorShape: Qt.PointingHandCursor
                     }

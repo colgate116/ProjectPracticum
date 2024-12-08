@@ -36,7 +36,7 @@ Item {
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
                 }
-                onFocusChanged: {
+                onReleased: {
                     if (userAnswer === model.index) {
                         return
                     }
