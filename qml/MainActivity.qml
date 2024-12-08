@@ -12,7 +12,14 @@ Window {
     visibility: Window.Maximized
     title: qsTr("Программа для тестирования")
 
-    Material.theme: Material.System
+    Material.theme: switch( settings.theme ) {
+                    case 0:
+                        return Material.Light
+                    case 1:
+                        return Material.Dark
+                    default:
+                        return Material.System
+                    }
     Material.accent: Material.Teal
 
     StackView {

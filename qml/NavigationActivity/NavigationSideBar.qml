@@ -103,6 +103,41 @@ ItemDelegate {
             }
         }
     }
+    RowLayout {
+        width: 160
+        anchors {
+            bottom: exitBtn.top
+            bottomMargin: 15
+            horizontalCenter: parent.horizontalCenter
+        }
+        Image {
+            Layout.preferredHeight: 50
+            Layout.preferredWidth: 50
+            source: "qrc:/path/imgs/navigationBarIcon.svg"
+        }
+        Switch {
+            Material.accent: Material.Indigo
+            checked: window.Material.theme === Material.Dark
+            onReleased: {
+                if (checked) {
+                    window.Material.theme = Material.Dark
+                    settings.theme = 1
+                }
+                else {
+                    window.Material.theme = Material.Light
+                    settings.theme = 0
+                }
+            }
+            HoverHandler {
+                cursorShape: Qt.PointingHandCursor
+            }
+        }
+        Image {
+            Layout.preferredHeight: 50
+            Layout.preferredWidth: 50
+            source: "qrc:/path/imgs/navigationBarIcon.svg"
+        }
+    }
     Rectangle {
         color: Material.color(Material.Grey)
         height: 2
