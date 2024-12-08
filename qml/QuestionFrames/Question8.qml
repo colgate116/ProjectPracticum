@@ -5,7 +5,9 @@ import QtQuick.Layouts
 
 
 Item {
-    property int answer8: 2014
+    property int answer: 2014
+    property int userAnswer: slider.value
+
     ColumnLayout {
         width: Math.min( 450, parent.width - 10)
         spacing: 5
@@ -21,6 +23,7 @@ Item {
             text: qsTr("Укажите год, начала санкционной политики запада в сторону РФ, согласно которой Bloomberg составило экономическую модель, которая демонстрирует разницу фактического и потенциального роста ВВП РФ в 10%, начиная с переода санкционных мер по настоящее время.")
         }
         Slider {
+            id: slider
             Layout.fillWidth: true
             value: 2017
             from: 2010
@@ -28,17 +31,26 @@ Item {
             snapMode: Slider.SnapAlways
             stepSize: 1
             onMoved: {
-                answer7.text = qsTr("Выбранный ответ: " ) + Math.round(value)
+                answerNotSaved()
+                answer8.text = qsTr("Выбранный ответ: " ) + Math.round(value)
             }
         }
         MaterialText {
-            id: answer7
+            id: answer8
             Layout.fillWidth: true
-            text: qsTr("Выбранный ответ: " )
+            text: qsTr("Выбранный ответ: " ) + slider.value
         }
 
     }
     SaveButton {
-
+        onPushed: {
+            if ( answer === userAnswer ) {
+                rightAnswer()
+            }
+            else
+            {
+                wrongAnswer()
+            }
+        }
     }
 }

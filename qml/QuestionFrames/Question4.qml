@@ -57,11 +57,9 @@ Item {
         onPushed: {
             if ( answer === userAnswer ) {
                 rightAnswer()
-                console.log(2)
             }
             else
             {
-                console.log(0)
                 wrongAnswer()
             }
         }

@@ -5,6 +5,9 @@ import QtQuick.Layouts
 
 
 Item {
+    property bool answer: true
+    property bool userAnswer: false
+
     ColumnLayout {
         width: Math.min( 450, parent.width - 10)
         spacing: 10
@@ -32,7 +35,8 @@ Item {
             Flickable {
                 Layout.preferredHeight: falseText.height
                 Layout.fillWidth: true
-                ScrollBar {
+                ScrollBar.horizontal: ScrollBar {
+                    anchors.centerIn: parent
                     width: parent.width
                     orientation: Qt.Horizontal
                     size: 0.5
@@ -43,8 +47,25 @@ Item {
                         cursorShape: Qt.SizeHorCursor
                     }
                 }
-                onFlickEnded: {
+                flickDeceleration: Flickable.HorizontalFlick
+                contentWidth: width * 2
+                onContentXChanged: {
+                    answerNotSaved()
+                    if (atXEnd) {
+                        userAnswer = true
+                        answer7.text = qsTr("Выбранный ответ: " ) + trueText.text
+                        falseText.color = Material.color(Material.Grey)
+                        trueText.color = Material.color(Material.Teal)
+                        return
+                    }
+                    if (atXBeginning) {
+                        userAnswer = false
+                        answer7.text = qsTr("Выбранный ответ: " ) + falseText.text
+                        falseText.color = Material.color(Material.Teal)
+                        trueText.color = Material.color(Material.Grey)
+                        return
 
+                    }
                 }
             }
             Text {
@@ -57,11 +78,19 @@ Item {
         MaterialText {
             id: answer7
             Layout.fillWidth: true
-            text: qsTr("Выбранный ответ: " )
+            text: qsTr("Выбранный ответ: " ) + falseText.text
         }
 
     }
     SaveButton {
-
+        onPushed: {
+            if ( answer === userAnswer ) {
+                rightAnswer()
+            }
+            else
+            {
+                wrongAnswer()
+            }
+        }
     }
 }

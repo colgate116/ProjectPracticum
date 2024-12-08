@@ -5,6 +5,8 @@ import "../Component"
 
 Item {
     id: root
+    property var answer: [1,0,2]
+    property var userAnswer: [-1,-1,-1]
 
     TaskText {
         id: taskText5
@@ -103,6 +105,7 @@ Item {
                             cursorShape: Qt.PointingHandCursor
                         }
                         onReleased: {
+                            answerNotSaved()
                             if ( selectedId === -1 )
                             {
                                 answerField.text = list.model.get( list.currentIndex ).ans
@@ -117,6 +120,7 @@ Item {
                                 text = qsTr("Внести")
                                 selectedId = -1
                             }
+                            userAnswer[model.index] = selectedId
 
                         }
                     }
@@ -127,5 +131,22 @@ Item {
     }
     SaveButton {
         id: saveButton5
+        onPushed: {
+            if ( compareAnswers() ) {
+                rightAnswer()
+            }
+            else
+            {
+                wrongAnswer()
+            }
+        }
+    }
+    function compareAnswers() {
+        for (let i = 0; i < 3; i++) {
+            if (answer[i] !== userAnswer[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 }

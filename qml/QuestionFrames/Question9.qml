@@ -7,6 +7,7 @@ Item {
     id: root
 
     property var checkedArray: [0, 0, 0, 0]
+    property var answer: [0,1,1,1]
 
     TaskText {
         text: qsTr("В связи с санкционной политикой западных стран главной целью развитие российской экономики является:")
@@ -57,6 +58,7 @@ Item {
                         cursorShape: Qt.PointingHandCursor
                     }
                     onCheckStateChanged: {
+                        answerNotSaved()
                         if (checked) {
                             checkedArray[index] = 1
                         }
@@ -75,7 +77,15 @@ Item {
         }
     }
     SaveButton {
-
+        onPushed: {
+            if ( compareAnswers() ) {
+                rightAnswer()
+            }
+            else
+            {
+                wrongAnswer()
+            }
+        }
     }
     function convertToAnswer()
     {
@@ -86,5 +96,13 @@ Item {
                 ans += (i + 1) + " "
         }
         return ans
+    }
+    function compareAnswers() {
+        for (let i = 0; i < 4; i++) {
+            if (answer[i] !== checkedArray[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
