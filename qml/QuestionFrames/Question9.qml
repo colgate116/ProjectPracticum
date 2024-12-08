@@ -10,7 +10,8 @@ Item {
     property var answer: [0,1,1,1]
 
     TaskText {
-        text: qsTr("В связи с санкционной политикой западных стран главной целью развитие российской экономики является:")
+        id: taskText9
+        text: qsTr("Для модернизации современных промышленных предприятий необходимо:")
         anchors {
             top: parent.top
             topMargin: 50
@@ -19,14 +20,14 @@ Item {
     ColumnLayout {
         width: Math.min( 450, parent.width - 10)
         anchors {
-            top: parent.top
-            topMargin: 200
+            top: taskText9.bottom
+            topMargin: 70
             horizontalCenter: parent.horizontalCenter
         }
         spacing: 10
         BoxFrame {
             Layout.fillWidth: true
-            Layout.preferredHeight: 250
+            Layout.preferredHeight: 400
             ListView {
                 id: list
                 header: TaskText {
@@ -38,20 +39,19 @@ Item {
                 interactive: false
                 model: ListModel {
                         ListElement {
-                            ans: "kldsfjnsekflm"
+                            ans: "Покупка новейшего оборудования\nвысшего уровня"
                         }
                         ListElement {
-                            ans: "kldsfjnsekflm1"
+                            ans: "Ввести проект согласование\nс иными планами работ"
                         }
                         ListElement {
-                            ans: "kldsfjnsekflm2"
+                            ans: "Производить сопоставительную\nоценку расходов по модернизации\nс результатом от ввода нового оборудования"
                         }
                         ListElement {
-                            ans: "kldsfjnsekflm3"
+                            ans: "Обеспечивать предприятие трудовыми\nресурсами"
                         }
                     }
                 delegate: CheckBox {
-                    height: 50
                     text: (model.index + 1) + ") " + model.ans
                     font.pointSize: 14
                     HoverHandler {
