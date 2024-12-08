@@ -156,3 +156,24 @@ bool SqliteDataBase::isUserExists( const QString& name )
     return query.value(0) != 0;
 }
 
+void SqliteDataBase::saveTest( const QVariantList& answers )
+{
+    QString queryText = "INSERT INTO " + TESTS_TABLE_NAME + "( " +
+                        QUESTION_1 + ", " + QUESTION_2 + ", " + QUESTION_3 + ", " + QUESTION_4 + ", " + QUESTION_5 + ", " + QUESTION_6 + ", " + QUESTION_7 + ", " + QUESTION_8 + ", " + QUESTION_9 + ", " + QUESTION_10 +
+                        " ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    QSqlQuery query;
+    query.prepare( queryText );
+    for ( int i = 0; i < 10; i++ )
+    {
+        query.bindValue( i, answers[i] );
+    }
+    if ( query.exec() )
+    {
+        qDebug() << "Тест сохранен";
+    }
+    else
+    {
+        qDebug() << db.lastError();
+    }
+}
+

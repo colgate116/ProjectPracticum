@@ -148,13 +148,13 @@ Item {
         selectedQuestion = swipeView.currentIndex
     }
     onRightAnswer: {
-        answerRes[swipeView.currentIndex] = 1
+        answerRes[swipeView.currentIndex - 1] = 1
     }
     onWrongAnswer: {
-        answerRes[swipeView.currentIndex] = 0
+        answerRes[swipeView.currentIndex - 1] = 0
     }
     onFinishTest: {
+        db.saveTest( answerRes )
         stack.pop()
-        testFinished()
     }
 }

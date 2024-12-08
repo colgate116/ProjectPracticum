@@ -9,6 +9,7 @@ Item {
     Button {
         text: qsTr("start")
         onReleased: {
+            navigationStack.currentIndex = 3
             stack.push( "qrc:/path/qml/TestFrame.qml" )
         }
     }

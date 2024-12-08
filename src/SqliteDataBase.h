@@ -19,6 +19,7 @@ public:
     Q_INVOKABLE bool signIn( const QString& user, const QString& password );
     Q_INVOKABLE bool insertNewUser( const QString& user, const QString& password );
     Q_INVOKABLE bool isUserExists( const QString& name );
+    Q_INVOKABLE void saveTest( const QVariantList& answers );
 private:
     void createTable( const QString query );
     void open();
