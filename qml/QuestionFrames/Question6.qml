@@ -6,19 +6,19 @@ import QtQuick.Layouts
 
 
 Item {
-    property var answersRB: [qsTr("Увеличение добычи и экспорта\nуглеводородов"),
-        qsTr("Рост российского несырьевого\nэкспорта"),
-        qsTr("Привлечение иностранных\nинвестиций"),
-        qsTr("Увелечение импорта товаров\nдружественных стран")]
+    property var answersRB: [qsTr("Высокая стоимость услуги"),
+        qsTr("Риск потери конфиденциаль-\nной информации"),
+        qsTr("Появление возможности высо-\nкой динамики развития"),
+        qsTr("Увелечение сложности техноло-\nгии производства")]
     property int answerRB: 1
     property int userAnswerRB: -1
 
     property var checkedArray: [0, 0, 0, 0]
-    property var answersCh: [qsTr("Риск развития"),
-        qsTr("Риск дефолта"),
-        qsTr("Риск природной катастрофы"),
-        qsTr("Финансовый риск")]
-    property var answerCh: [1, 1, 1, 1]
+    property var answersCh: [qsTr("Снижение численности\nперсонала предприятия"),
+        qsTr("Снижение себестоимости\nза счет снижения издержек"),
+        qsTr("Улучшение качества изделия"),
+        qsTr("Уменьшение зависимости от\nсторонних исполнителей")]
+    property var answerCh: [1, 1, 0, 0]
 
     TaskText {
         id: task
@@ -57,7 +57,7 @@ Item {
                         }
                         answerNotSaved()
                         userAnswerRB = model.index
-                        rbAnswer.text = modelData.replace('\n', ' ')
+                        rbAnswer.text = modelData.replace('\n', ' ').replace("- ", '')
                     }
                 }
             }
@@ -67,7 +67,7 @@ Item {
                 text: qsTr("Преимущества")
             }
             Repeater {
-                model: answerCh
+                model: answersCh
                 CheckBox {
                     text: (model.index + 1) + ") " + modelData
                     font.pointSize: 15
@@ -82,7 +82,7 @@ Item {
                         else {
                             checkedArray[index] = 0
                         }
-                        cbAnswer.text = "kmfklmsdkvlv;"
+                        cbAnswer.text = convertToAnswer()
                     }
                 }
             }
@@ -129,7 +129,36 @@ Item {
     }
 
     SaveButton {
-
         id: saveBtn
+        onPushed: {
+            if ( answerRB === userAnswerRB && compareAnswers() ) {
+                rightAnswer()
+                console.log(1)
+            }
+            else
+            {
+                console.log(2)
+                wrongAnswer()
+            }
+        }
+    }
+
+    function convertToAnswer()
+    {
+        let ans = ""
+        for ( let i = 0; i < checkedArray.length; i++ )
+        {
+            if ( checkedArray[i] === 1 )
+                ans += (i + 1) + " "
+        }
+        return ans
+    }
+    function compareAnswers() {
+        for (let i = 0; i < 4; i++) {
+            if (answerCh[i] !== checkedArray[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
