@@ -115,6 +115,38 @@ void SqliteDataBase::close() {
     qDebug() << "Success: DataBase is closed";
 }
 
+int SqliteDataBase::getUserIdByName( const QString name )
+{
+    QString queryText = "SELECT id FROM " + USERS_TABLE_NAME + " WHERE " + USER_NAME + " = '" + name + "'";
+    QSqlQuery query;
+    query.prepare( queryText );
+    query.exec();
+    query.last();
+    return query.value(0).toInt();
+}
+
+void SqliteDataBase::connectUserWithTest( const QString user, const int testId )
+{
+    int userId = getUserIdByName( user );
+    QString queryText = "INSERT INTO " + USER_STATISTIC_TABLE + "( " +
+                        TEST_ID + ", " + DATE + ", " + USER_ID +
+                        " ) VALUES (:testId, :date, :userId);";
+    QSqlQuery query;
+    QString dateTime = QDateTime::currentDateTime().toString("hh:mm dd.MM.yyyy");
+    query.prepare( queryText );
+    query.bindValue( ":testId", testId );
+    query.bindValue( ":date",  dateTime );
+    query.bindValue( ":userId", userId );
+    if ( query.exec() )
+    {
+        qDebug() << "Информация о пользователе дополнена";
+    }
+    else
+    {
+        qDebug() << db.lastError();
+    }
+}
+
 void SqliteDataBase::createTable( const QString query )
 {
     QSqlQuery sql_query;
@@ -156,7 +188,7 @@ bool SqliteDataBase::isUserExists( const QString& name )
     return query.value(0) != 0;
 }
 
-void SqliteDataBase::saveTest( const QVariantList& answers )
+void SqliteDataBase::saveTest( const QVariantList& answers, const QString name )
 {
     QString queryText = "INSERT INTO " + TESTS_TABLE_NAME + "( " +
                         QUESTION_1 + ", " + QUESTION_2 + ", " + QUESTION_3 + ", " + QUESTION_4 + ", " + QUESTION_5 + ", " + QUESTION_6 + ", " + QUESTION_7 + ", " + QUESTION_8 + ", " + QUESTION_9 + ", " + QUESTION_10 +
@@ -167,13 +199,7 @@ void SqliteDataBase::saveTest( const QVariantList& answers )
     {
         query.bindValue( i, answers[i] );
     }
-    if ( query.exec() )
-    {
-        qDebug() << "Тест сохранен";
-    }
-    else
-    {
-        qDebug() << db.lastError();
-    }
+    query.exec();
+    connectUserWithTest( name, query.lastInsertId().toInt() );
 }
 

@@ -8,6 +8,7 @@
 #include <QSqlQuery>
 #include <QObject>
 #include <QCryptographicHash>
+#include <QDateTime>
 
 class SqliteDataBase: public QObject
 {
@@ -19,11 +20,13 @@ public:
     Q_INVOKABLE bool signIn( const QString& user, const QString& password );
     Q_INVOKABLE bool insertNewUser( const QString& user, const QString& password );
     Q_INVOKABLE bool isUserExists( const QString& name );
-    Q_INVOKABLE void saveTest( const QVariantList& answers );
+    Q_INVOKABLE void saveTest( const QVariantList& answers, const QString name );
 private:
     void createTable( const QString query );
     void open();
     void close();
+    int getUserIdByName( const QString name );
+    void connectUserWithTest( const QString user, const int testId );
     QSqlDatabase db;
 };
 

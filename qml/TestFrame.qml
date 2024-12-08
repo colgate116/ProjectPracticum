@@ -154,7 +154,7 @@ Item {
         answerRes[swipeView.currentIndex - 1] = 0
     }
     onFinishTest: {
-        db.saveTest( answerRes )
+        db.saveTest( answerRes, settings.userName )
         stack.pop()
     }
 }

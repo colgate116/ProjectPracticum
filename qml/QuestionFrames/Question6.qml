@@ -133,11 +133,9 @@ Item {
         onPushed: {
             if ( answerRB === userAnswerRB && compareAnswers() ) {
                 rightAnswer()
-                console.log(1)
             }
             else
             {
-                console.log(2)
                 wrongAnswer()
             }
         }
