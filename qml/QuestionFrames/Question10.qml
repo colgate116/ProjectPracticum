@@ -63,5 +63,6 @@ Item {
                 wrongAnswer()
             }
         }
+        text: qsTr("Завершить тест")
     }
 }

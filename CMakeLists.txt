@@ -44,6 +44,7 @@ qt_add_qml_module(projectPracticum
     qml/NavigationActivity/NavigationFrame/Theory.qml
     qml/NavigationActivity/NavigationFrame/Title.qml
 
+    qml/QuestionFrames/EndTestFrame.qml
     qml/QuestionFrames/Question1.qml
     qml/QuestionFrames/Question2.qml
     qml/QuestionFrames/Question3.qml

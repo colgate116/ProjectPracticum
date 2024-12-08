@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls.Material
 import "Component"
 import "QuestionFrames"
+import "NavigationActivity"
 
 Item {
     id: testFrame
@@ -15,6 +16,9 @@ Item {
 
     signal saveAnswer()
     signal answerNotSaved()
+
+    signal finishTest()
+
     property int selectedQuestion: 0
 
     Pane {
@@ -127,6 +131,10 @@ Item {
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
+        EndTestFrame {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
     }
     Component.onCompleted: {
         timer.start()
@@ -144,5 +152,9 @@ Item {
     }
     onWrongAnswer: {
         answerRes[swipeView.currentIndex] = 0
+    }
+    onFinishTest: {
+        stack.pop()
+        testFinished()
     }
 }

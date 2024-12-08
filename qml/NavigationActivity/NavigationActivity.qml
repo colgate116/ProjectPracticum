@@ -7,6 +7,13 @@ import "NavigationFrame"
 
 
 Item {    
+    id: navigationActivity
+    signal testFinished()
+
+    onTestFinished: {
+        navigationStack.currentIndex = 3
+    }
+
     Pane {
         anchors.fill: parent
     }
