@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import app
 
 Window {
+
     id: window
     height: 1200
     width: 900
@@ -22,6 +23,8 @@ Window {
                     }
     Material.accent: Material.Teal
 
+    signal testFinished
+
     StackView {
         id: stack
         anchors.fill: parent
@@ -30,7 +33,9 @@ Window {
 
     DataBase {
         id: db
-
+        onTestSaved: {
+            statModel.content = db.getUsetStat( settings.userName )
+        }
     }
 
     SettingsManager {

@@ -22,6 +22,8 @@ public:
     Q_INVOKABLE bool isUserExists( const QString& name );
     Q_INVOKABLE void saveTest( const QVariantList& answers, const QString name );
     Q_INVOKABLE void close();
+signals:
+    void testSaved();
 private:
     void createTable( const QString query );
     void open();

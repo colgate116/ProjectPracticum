@@ -16,12 +16,15 @@ int UserStatisticModel::rowCount( const QModelIndex& parent ) const
 
 QVariant UserStatisticModel::data( const QModelIndex& index, int role ) const
 {
-    if (modelData[index.row()].contains("q1") && modelData[index.row()].contains("q2") && modelData[index.row()].contains("q3") &&
+    if (!(modelData[index.row()].contains("q1") && modelData[index.row()].contains("q2") && modelData[index.row()].contains("q3") &&
         modelData[index.row()].contains("q4") && modelData[index.row()].contains("q5") && modelData[index.row()].contains("q6") &&
         modelData[index.row()].contains("q7") && modelData[index.row()].contains("q8") && modelData[index.row()].contains("q9") &&
-        modelData[index.row()].contains("q10") && modelData[index.row()].contains("date")
+          modelData[index.row()].contains("q10") && modelData[index.row()].contains("date"))
         )
+    {
+        qDebug() << "Error: modelError";
         return QVariant();
+    }
     int mark;
     int rightAnswers = 0;
     int wrongAnswers = 10;
@@ -130,13 +133,6 @@ QHash<int, QByteArray> UserStatisticModel::roleNames() const
     return roles;
 }
 
-void UserStatisticModel::add( const QList<QVariantMap>& el )
-{
-    beginInsertRows(QModelIndex(), modelData.size(), modelData.size());
-    modelData.append( el );
-    endInsertRows();
-}
-
 QList<QVariantMap> UserStatisticModel::content()
 {
     return modelData;
@@ -144,6 +140,9 @@ QList<QVariantMap> UserStatisticModel::content()
 
 void UserStatisticModel::setContent( QList<QVariantMap> model )
 {
+    beginResetModel();
     modelData = model;
+    endResetModel();
     emit contentChanged();
 }
+

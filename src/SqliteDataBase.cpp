@@ -196,6 +196,7 @@ void SqliteDataBase::saveTest( const QVariantList& answers, const QString name )
     }
     query.exec();
     connectUserWithTest( name, query.lastInsertId().toInt() );
+    emit testSaved();
 }
 
 QList<QVariantMap> SqliteDataBase::getUsetStat( const QString& user )
@@ -227,7 +228,7 @@ QList<QVariantMap> SqliteDataBase::getUsetStat( const QString& user )
         stat["q8"] = query.value(8).toInt();
         stat["q9"] = query.value(9).toInt();
         stat["q10"] = query.value(10).toInt();
-        statList.append( stat );
+        statList.push_front( stat );
     }
     return statList;
 }

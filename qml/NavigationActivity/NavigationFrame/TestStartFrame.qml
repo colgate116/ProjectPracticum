@@ -27,7 +27,6 @@ Item {
         Material.background: Material.Teal
         text: qsTr("Начать")
         onReleased: {
-            navigationStack.currentIndex = 3
             stack.push( "qrc:/path/qml/TestFrame.qml" )
         }
     }

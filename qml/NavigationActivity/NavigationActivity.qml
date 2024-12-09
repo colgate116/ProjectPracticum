@@ -6,7 +6,7 @@ import "../Component"
 import "NavigationFrame"
 
 
-Item {    
+Item {        
     id: navigationActivity
 
     Pane {
@@ -114,7 +114,9 @@ Item {
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
-        Item {
+        StatisticFrame {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
         }
     }
 }
