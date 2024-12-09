@@ -110,7 +110,7 @@ void SqliteDataBase::close() {
     qDebug() << "Success: DataBase is closed";
 }
 
-int SqliteDataBase::getUserIdByName( const QString name )
+int SqliteDataBase::getUserIdByName( const QString& name )
 {
     QString queryText = "SELECT id FROM " + USERS_TABLE_NAME + " WHERE " + USER_NAME + " = '" + name + "'";
     QSqlQuery query;
@@ -196,5 +196,39 @@ void SqliteDataBase::saveTest( const QVariantList& answers, const QString name )
     }
     query.exec();
     connectUserWithTest( name, query.lastInsertId().toInt() );
+}
+
+QList<QVariantMap> SqliteDataBase::getUsetStat( const QString& user )
+{
+    int userId = getUserIdByName( user );
+    QString queryText = "SELECT " + DATE + ", " + QUESTION_1 + ", " + QUESTION_2 + ", " + QUESTION_3 + ", " + QUESTION_4 + ", " + QUESTION_5
+                        + ", " + QUESTION_6 + ", " + QUESTION_7 + ", " + QUESTION_8 + ", " + QUESTION_9 + ", " + QUESTION_10
+                        + " FROM " + USER_STATISTIC_TABLE + " JOIN " + TESTS_TABLE_NAME + " ON " + USER_STATISTIC_TABLE + "." + TEST_ID
+                        + " = " + TESTS_TABLE_NAME + ".id WHERE " + USER_ID + " = " + QString::number(userId);
+    QSqlQuery query;
+    query.prepare( queryText );
+    if ( !query.exec() )
+    {
+        qDebug() << db.lastError();
+        return QList<QVariantMap>();
+    }
+    QList<QVariantMap> statList;
+    while ( query.next() )
+    {
+        QVariantMap stat;
+        stat["date"] = query.value(0).toString();
+        stat["q1"] = query.value(1).toInt();
+        stat["q2"] = query.value(2).toInt();
+        stat["q3"] = query.value(3).toInt();
+        stat["q4"] = query.value(4).toInt();
+        stat["q5"] = query.value(5).toInt();
+        stat["q6"] = query.value(6).toInt();
+        stat["q7"] = query.value(7).toInt();
+        stat["q8"] = query.value(8).toInt();
+        stat["q9"] = query.value(9).toInt();
+        stat["q10"] = query.value(10).toInt();
+        statList.append( stat );
+    }
+    return statList;
 }
 

@@ -16,6 +16,7 @@ class SqliteDataBase: public QObject
 public:
     explicit SqliteDataBase(QObject *parent = nullptr);
     void create();
+    Q_INVOKABLE QList<QVariantMap> getUsetStat( const QString& user );
     Q_INVOKABLE bool signIn( const QString& user, const QString& password );
     Q_INVOKABLE bool insertNewUser( const QString& user, const QString& password );
     Q_INVOKABLE bool isUserExists( const QString& name );
@@ -24,7 +25,7 @@ public:
 private:
     void createTable( const QString query );
     void open();
-    int getUserIdByName( const QString name );
+    int getUserIdByName( const QString& name );
     void connectUserWithTest( const QString user, const int testId );
     QSqlDatabase db;
 };

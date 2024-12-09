@@ -23,6 +23,7 @@ qt_add_qml_module(projectPracticum
     SOURCES
     src/SettingsManager.h src/SettingsManager.cpp
     src/SqliteDataBase.h src/SqliteDataBase.cpp
+    src/UserStatisticModel.h src/UserStatisticModel.cpp
 
     QML_FILES
     qml/Component/BoxFrame.qml

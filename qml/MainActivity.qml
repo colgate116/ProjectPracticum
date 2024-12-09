@@ -36,6 +36,12 @@ Window {
     SettingsManager {
         id: settings
     }
+
+    StatModel {
+        id: statModel
+        content: db.getUsetStat( settings.userName )
+    }
+
     Component.onDestruction: {
         db.close()
     }

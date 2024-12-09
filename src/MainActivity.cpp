@@ -4,6 +4,7 @@
 
 #include "SqliteDataBase.h"
 #include "SettingsManager.h"
+#include "UserStatisticModel.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<SqliteDataBase>( "app", 1, 0, "DataBase" );
     qmlRegisterType<SettingsManager>( "app", 1, 0, "SettingsManager" );
+    qmlRegisterType<UserStatisticModel>( "app", 1, 0, "StatModel" );
 
     const QUrl url("qrc:/path/qml/MainActivity.qml"); // ссылка на файл qml
     engine.load(url);   // загружаем файл qml
