@@ -68,7 +68,7 @@ Item {
                     loginField.text = ""
                     passwordField.text = ""
                     settings.saveSkipping()
-                    stack.push( "qrc:/path/qml/NavigationActivity/NavigationActivity.qml" )
+                    stack.push( navigationActivity )
                 }
             }
         }

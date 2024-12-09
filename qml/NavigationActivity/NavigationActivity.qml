@@ -8,11 +8,9 @@ import "NavigationFrame"
 
 Item {        
     id: navigationActivity
-
     Pane {
         anchors.fill: parent
     }
-
     PropertyAnimation {
         id: bluring
         target: blur
@@ -30,7 +28,6 @@ Item {
             bottom: parent.bottom
         }
     }
-
     Rectangle {
         id: blur
         z: 2
@@ -44,7 +41,6 @@ Item {
             }
         }
     }
-
     ImgButton {
         z: 2
         id: navigationSideBarBtn
@@ -61,7 +57,6 @@ Item {
             navigationSideBar.visible = true
         }
     }
-
     MouseArea {
         anchors.fill: parent
         onReleased: {
@@ -70,7 +65,6 @@ Item {
             }
         }
     }
-
     Text {
         id: fragmentName
         anchors {

@@ -169,7 +169,7 @@ ItemDelegate {
             settings.saveSkipping()
             if ( stack.depth === 1 )
             {
-                stack.replace( "qrc:/path/qml/EnteryActivity/EnteryActivity.qml" )
+                stack.replace( enteryActivity )
             }
             else
             {

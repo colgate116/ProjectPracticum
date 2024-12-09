@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 import app
+import "NavigationActivity"
+import "EnteryActivity"
 
 Window {
 
@@ -28,25 +30,36 @@ Window {
     StackView {
         id: stack
         anchors.fill: parent
-        initialItem: settings.skipAutorization && settings.userName.trim() !== ""  &&  db.isUserExists(settings.userName) ? "qrc:/path/qml/NavigationActivity/NavigationActivity.qml" : "qrc:/path/qml/EnteryActivity/EnteryActivity.qml"
+        initialItem: settings.skipAutorization && settings.userName.trim() !== ""  &&  db.isUserExists(settings.userName) ? navigationActivity : enteryActivity
     }
-
+    Component {
+        id: navigationActivity
+        NavigationActivity {
+        }
+    }
+    Component {
+        id: enteryActivity
+        EnteryActivity {
+        }
+    }
+    Component {
+        id: testActivity
+        TestFrame {
+        }
+    }
     DataBase {
         id: db
         onTestSaved: {
             statModel.content = db.getUsetStat( settings.userName )
         }
     }
-
     SettingsManager {
         id: settings
     }
-
     StatModel {
         id: statModel
         content: db.getUsetStat( settings.userName )
     }
-
     Component.onDestruction: {
         db.close()
     }
