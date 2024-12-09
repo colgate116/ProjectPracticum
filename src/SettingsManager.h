@@ -14,7 +14,6 @@ class SettingsManager: public QObject
     Q_PROPERTY(int theme READ theme WRITE setTheme NOTIFY themeChanged FINAL)
 public:
     explicit SettingsManager(QObject *parent = nullptr);
-    ~SettingsManager();
     void setSkipAutorization( const bool skip );
     bool skipAutorization() const noexcept;
     void setUserName( const QString name );
@@ -22,6 +21,7 @@ public:
     void setTheme( const int theme );
     int theme() const noexcept;
     void loadSettings();
+    Q_INVOKABLE void saveTheme();
     Q_INVOKABLE void saveSkipping();
 signals:
     void skipAutorizationChanged();

@@ -5,15 +5,16 @@ import QtQuick.Layouts
 
 Item {
     MaterialText {
+        width: Math.min( 800, parent.width )
         id: txt
         anchors {
             horizontalCenter: parent.horizontalCenter
             top: parent.top
             topMargin: 200
         }
-
+        horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.Wrap
-        text: qsTr("Желаете завершить тест? убедитесь, что вы сохранили все ответы верно.")
+        text: qsTr("Желаете завершить тест? Убедитесь, что вы сохранили все ответы верно.")
     }
     Button {
         anchors {

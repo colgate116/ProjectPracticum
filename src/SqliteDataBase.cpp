@@ -24,11 +24,6 @@ SqliteDataBase::SqliteDataBase( QObject *parent ): QObject( parent )
     create();
 }
 
-SqliteDataBase::~SqliteDataBase()
-{
-    close();
-}
-
 void SqliteDataBase::create()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");

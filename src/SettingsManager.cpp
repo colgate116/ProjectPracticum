@@ -5,14 +5,6 @@ SettingsManager::SettingsManager( QObject *parent ): QObject( parent )
     loadSettings();
 }
 
-SettingsManager::~SettingsManager()
-{
-    QSettings settings( "Settings.ini", QSettings::Format::IniFormat );
-    settings.beginGroup( "autorization" );
-    settings.setValue( "theme", theme_ );
-    settings.endGroup();
-}
-
 void SettingsManager::setSkipAutorization( const bool skip )
 {
     skipAutorization_ = skip;
@@ -44,6 +36,13 @@ void SettingsManager::setTheme( const int theme )
 int SettingsManager::theme() const noexcept
 {
     return theme_;
+}
+
+void SettingsManager::saveTheme() {
+    QSettings settings( "Settings.ini", QSettings::Format::IniFormat );
+    settings.beginGroup( "autorization" );
+    settings.setValue( "theme", theme_ );
+    settings.endGroup();
 }
 
 void SettingsManager::loadSettings()

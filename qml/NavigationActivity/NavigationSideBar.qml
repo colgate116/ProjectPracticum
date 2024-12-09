@@ -104,18 +104,18 @@ ItemDelegate {
         }
     }
     RowLayout {
-        width: 160
         anchors {
             bottom: exitBtn.top
             bottomMargin: 15
             horizontalCenter: parent.horizontalCenter
         }
         Image {
-            Layout.preferredHeight: 50
-            Layout.preferredWidth: 50
-            source: "qrc:/path/imgs/navigationBarIcon.svg"
+            Layout.preferredHeight: 30
+            Layout.preferredWidth: 30
+            source: "qrc:/path/imgs/sun.png"
         }
         Switch {
+            Layout.preferredHeight: 20
             Material.accent: Material.Indigo
             checked: window.Material.theme === Material.Dark
             onReleased: {
@@ -127,15 +127,16 @@ ItemDelegate {
                     window.Material.theme = Material.Light
                     settings.theme = 0
                 }
+                settings.saveTheme()
             }
             HoverHandler {
                 cursorShape: Qt.PointingHandCursor
             }
         }
         Image {
-            Layout.preferredHeight: 50
-            Layout.preferredWidth: 50
-            source: "qrc:/path/imgs/navigationBarIcon.svg"
+            Layout.preferredHeight: 30
+            Layout.preferredWidth: 30
+            source: "qrc:/path/imgs/moon.png"
         }
     }
     Rectangle {

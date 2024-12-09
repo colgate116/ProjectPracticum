@@ -62,6 +62,8 @@ qt_add_qml_module(projectPracticum
     RESOURCES
     imgs/MTUCI.jpg
     imgs/navigationBarIcon.svg
+    imgs/sun.png
+    imgs/moon.png
 )
 
 target_link_libraries(projectPracticum

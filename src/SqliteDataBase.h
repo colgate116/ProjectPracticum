@@ -15,16 +15,15 @@ class SqliteDataBase: public QObject
     Q_OBJECT
 public:
     explicit SqliteDataBase(QObject *parent = nullptr);
-    ~SqliteDataBase();
     void create();
     Q_INVOKABLE bool signIn( const QString& user, const QString& password );
     Q_INVOKABLE bool insertNewUser( const QString& user, const QString& password );
     Q_INVOKABLE bool isUserExists( const QString& name );
     Q_INVOKABLE void saveTest( const QVariantList& answers, const QString name );
+    Q_INVOKABLE void close();
 private:
     void createTable( const QString query );
     void open();
-    void close();
     int getUserIdByName( const QString name );
     void connectUserWithTest( const QString user, const int testId );
     QSqlDatabase db;

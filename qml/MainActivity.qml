@@ -30,9 +30,13 @@ Window {
 
     DataBase {
         id: db
+
     }
 
     SettingsManager {
         id: settings
+    }
+    Component.onDestruction: {
+        db.close()
     }
 }
