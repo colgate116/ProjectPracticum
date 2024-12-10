@@ -23,6 +23,7 @@ public:
     Q_INVOKABLE void saveTest( const QVariantList& answers, const QString name );
     Q_INVOKABLE void close();
 signals:
+    void userAlreadyExists();
     void testSaved();
 private:
     void createTable( const QString query );

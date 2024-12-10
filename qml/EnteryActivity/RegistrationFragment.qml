@@ -11,7 +11,7 @@ ItemDelegate {
             placeholderText: qsTr("Придумайте логин")
             Layout.fillWidth: true
             font.pointSize: 16
-            placeholderTextColor: focus ? Material.color( Material.Pink ) : "Black"
+            placeholderTextColor: focus ? Material.color( Material.BlueGrey ) : "Black"
             onAccepted: {
                 passwordCreateField.focus = true
             }
@@ -28,7 +28,7 @@ ItemDelegate {
             placeholderText: qsTr("Придумайте пароль")
             Layout.fillWidth: true
             font.pointSize: 16
-            placeholderTextColor: focus ? Material.color( Material.Pink ) : "Black"
+            placeholderTextColor: focus ? Material.color( Material.BlueGrey ) : "Black"
             echoMode: "Password"
             onAccepted: {
                 passwordRepeatField.focus = true
@@ -46,7 +46,7 @@ ItemDelegate {
             placeholderText: qsTr("Подтвердите пароль")
             Layout.fillWidth: true
             font.pointSize: 16
-            placeholderTextColor: focus ? Material.color( Material.Pink ) : "Black"
+            placeholderTextColor: focus ? Material.color( Material.BlueGrey ) : "Black"
             echoMode: "Password"
             onAccepted: {
                 passwordRepeatField.focus = false
@@ -64,15 +64,21 @@ ItemDelegate {
             font.pointSize: 16
             text: qsTr("Создать аккаунт")
             Material.foreground: "White"
-            Material.background: Material.DeepPurple
+            Material.background: Material.Teal
             HoverHandler {
                 cursorShape: Qt.PointingHandCursor
             }
             onReleased: {
                 if ( passwordCreateField.text === passwordRepeatField.text && passwordCreateField.text.trim() !== "" )
                 {
+                    if (db.isUserExists(loginReg.text)) {
+                        msgTxt.visible = true
+                        msgTxt.text = qsTr("Такой пользователь уже есть")
+                        return;
+                    }
                     if (db.insertNewUser( loginReg.text, passwordCreateField.text ))
                     {
+                        msgTxt.visible = false
                         loginReg.text = ""
                         passwordCreateField.text = ""
                         passwordRepeatField.text = ""
@@ -85,7 +91,8 @@ ItemDelegate {
                 }
                 else
                 {
-                    console.log( "Пароли не совпали" )
+                    msgTxt.visible = true
+                    msgTxt.text = qsTr("Пароли не совпали")
                 }
             }
         }

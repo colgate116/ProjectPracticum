@@ -11,7 +11,7 @@ Item {
             placeholderText: qsTr("Логин")
             Layout.fillWidth: true
             font.pointSize: 16
-            placeholderTextColor: focus ? Material.color( Material.Pink ) : "Black"
+            placeholderTextColor: focus ? Material.color( Material.BlueGrey ) : "Black"
             onAccepted: {
                 passwordField.focus = true
             }
@@ -28,7 +28,7 @@ Item {
             placeholderText: qsTr("Пароль")
             Layout.fillWidth: true
             font.pointSize: 16
-            placeholderTextColor: focus ? Material.color( Material.Pink ) : "Black"
+            placeholderTextColor: focus ? Material.color( Material.BlueGrey ) : "Black"
             echoMode: "Password"
             onAccepted: {
                 focus = false
@@ -55,7 +55,7 @@ Item {
             font.pointSize: 16
             text: qsTr("Вход")
             Material.foreground: "White"
-            Material.background: Material.DeepPurple
+            Material.background: Material.Teal
             HoverHandler {
                 cursorShape: Qt.PointingHandCursor
             }
@@ -63,12 +63,17 @@ Item {
                 //todo signal
                 if ( db.signIn( loginField.text, passwordField.text ) )
                 {
+                    msgTxt.visible = false
                     settings.skipAutorization = rememberMe.checkState
                     settings.userName = loginField.text
                     loginField.text = ""
                     passwordField.text = ""
                     settings.saveSkipping()
                     stack.push( navigationActivity )
+                }
+                else {
+                    msgTxt.visible = true
+                    msgTxt.text = qsTr("Неверный логин или пароль")
                 }
             }
         }

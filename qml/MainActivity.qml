@@ -40,6 +40,7 @@ Window {
     Component {
         id: enteryActivity
         EnteryActivity {
+            id: ea
         }
     }
     Component {
@@ -55,6 +56,9 @@ Window {
     }
     SettingsManager {
         id: settings
+        onUserNameChanged: {
+            statModel.content = db.getUsetStat( userName )
+        }
     }
     StatModel {
         id: statModel

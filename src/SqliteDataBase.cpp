@@ -91,6 +91,7 @@ bool SqliteDataBase::insertNewUser( const QString& user, const QString& password
     if ( isUserExists( user ) )
     {
         qDebug() << "Такой пользователь уже существует";
+        emit userAlreadyExists();
         return false;
     }
     if ( query.exec() )

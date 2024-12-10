@@ -3,13 +3,18 @@ import QtQuick.Layouts
 import QtQuick.Controls.Material
 
 ItemDelegate {
+    property alias warningText: msgTxt
+
+    Material.theme: Material.Light
+    Material.accent: Material.BlueGrey
+
     background:
         Rectangle {
             anchors.fill: parent
             opacity: 0.65
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "purple" }
-                GradientStop { position: 1.0; color: "darkBlue" }
+                GradientStop { position: 0.0; color: Material.color(Material.Teal) }
+                GradientStop { position: 1.0; color: Material.color(Material.Indigo) }
             }
         }
 
@@ -61,6 +66,17 @@ ItemDelegate {
                 }
             }
         }
+        Text {
+            id: msgTxt
+            anchors {
+                bottom: autorizationFrame.top
+                horizontalCenter: parent.horizontalCenter
+                bottomMargin: 12
+            }
+            visible: false
+            font.pointSize: 20
+            color: Material.color( Material.Pink )
+        }
         StackLayout {
             id: autorizationFrame
             currentIndex: 0
@@ -75,6 +91,9 @@ ItemDelegate {
             }
             RegistrationFragment {
                 Layout.fillWidth: true
+            }
+            onCurrentIndexChanged: {
+                msgTxt.visible = false
             }
         }
     }
