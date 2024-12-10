@@ -70,6 +70,7 @@ Item {
                                 }
 
                         Image {
+                            Layout.leftMargin: (root.width - Math.min(600, root.width)) / 2
                             Layout.preferredHeight: root.width < 600 ? root.width * 10 / 6 : 1000
                             Layout.preferredWidth: Math.min(600, root.width)
                             source: modelData
