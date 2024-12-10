@@ -35,7 +35,6 @@ Item {
         boundsBehavior: Flickable. StopAtBounds
         anchors.horizontalCenter: parent.horizontalCenter
         RowLayout {
-
             id: taskNumRow
             Repeater {
                 model: 10
@@ -81,7 +80,15 @@ Item {
         repeat: true
         onTriggered: {
             timeLine.value += 1
+            if ( timeLine.value === timeLine.to ) {
+                timer.stop()
+                flickable.enabled = false
+                swipeView.currentIndex = 10
+                endTestFrame.btnText = qsTr("Посмотреть результаты")
+                endTestFrame.msgText = qsTr("Время вышло, тест завершен.")
+            }
         }
+
     }
     StackLayout {
         id: swipeView
@@ -132,6 +139,7 @@ Item {
             Layout.fillWidth: true
         }
         EndTestFrame {
+            id: endTestFrame
             Layout.fillHeight: true
             Layout.fillWidth: true
         }

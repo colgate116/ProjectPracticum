@@ -67,6 +67,29 @@ qt_add_qml_module(projectPracticum
     imgs/navigationBarIcon.svg
     imgs/sun.png
     imgs/moon.png
+    imgs/theory/1/1.jpg
+    imgs/theory/1/2.jpg
+    imgs/theory/1/3.jpg
+    imgs/theory/1/4.jpg
+    imgs/theory/1/5.jpg
+    imgs/theory/1/6.jpg
+    imgs/theory/1/7.jpg
+    imgs/theory/1/8.jpg
+    imgs/theory/1/9.jpg
+    imgs/theory/1/10.jpg
+    imgs/theory/1/11.jpg
+    imgs/theory/2/1.jpg
+    imgs/theory/2/2.jpg
+    imgs/theory/2/3.jpg
+    imgs/theory/2/4.jpg
+    imgs/theory/2/5.jpg
+    imgs/theory/2/6.jpg
+    imgs/theory/2/7.jpg
+    imgs/theory/2/8.jpg
+    imgs/theory/2/9.jpg
+    imgs/theory/3/1.jpg
+    imgs/theory/3/2.jpg
+    imgs/theory/3/3.jpg
 )
 
 target_link_libraries(projectPracticum

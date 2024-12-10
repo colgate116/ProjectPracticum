@@ -4,6 +4,9 @@ import "../Component"
 import QtQuick.Layouts
 
 Item {
+    property string msgText: qsTr("Желаете завершить тест? Убедитесь, что вы сохранили все ответы верно.")
+    property string btnText: qsTr("Завершить тест")
+
     MaterialText {
         width: Math.min( 800, parent.width )
         id: txt
@@ -14,7 +17,7 @@ Item {
         }
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.Wrap
-        text: qsTr("Желаете завершить тест? Убедитесь, что вы сохранили все ответы верно.")
+        text: msgText
     }
     Button {
         anchors {
@@ -25,7 +28,7 @@ Item {
         font.bold: true
         Material.foreground: "White"
         Material.background: Material.Teal
-        text: qsTr("Завершить тест")
+        text: btnText
         onReleased: {
             finishTest()
         }
