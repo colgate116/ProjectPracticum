@@ -130,6 +130,8 @@ QHash<int, QByteArray> UserStatisticModel::roleNames() const
     roles[Question8] = "question8";
     roles[Question9] = "question9";
     roles[Question10] = "question10";
+    roles[RightAnswers] = "rightAnswers";
+    roles[WrongAnswers] = "wrongAnswers";
     return roles;
 }
 

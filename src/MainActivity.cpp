@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QCoreApplication>
+#include <QApplication>
 
 #include "SqliteDataBase.h"
 #include "SettingsManager.h"
@@ -9,7 +10,8 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute( Qt::AA_ShareOpenGLContexts );
-    QGuiApplication app(argc, argv);
+    //QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
     qmlRegisterType<SqliteDataBase>( "app", 1, 0, "DataBase" );
@@ -18,6 +20,6 @@ int main(int argc, char *argv[])
 
     const QUrl url("qrc:/path/qml/MainActivity.qml"); // ссылка на файл qml
     engine.load(url);   // загружаем файл qml
-
-    return app.exec();
+    const int exec = QCoreApplication::exec();
+    return exec;
 }

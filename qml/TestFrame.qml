@@ -156,6 +156,5 @@ Item {
     onFinishTest: {
         db.saveTest( answerRes, settings.userName )
         stack.pop()
-        navigationActivity.a()
     }
 }
